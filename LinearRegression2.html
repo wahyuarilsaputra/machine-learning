@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contoh Soal Polynominal Regression &#8212; 20-055 Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LinearRegression2';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/robitt.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/robitt.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLinearRegression2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/LinearRegression2.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Contoh Soal Polynominal Regression</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <p>#Linear Regression 2</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelName</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">],[</span><span class="mi">5</span><span class="p">],[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fitur</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(4, 1) 
+ (4,)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelName</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fitur</span><span class="p">,</span><span class="n">target</span><span class="p">)</span>
+<span class="n">modelName</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fitur</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([2.6, 3.2, 3.8, 1.4])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">modelName</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelName</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7999999999999998
+[0.6]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#new data dengan data dummy (1-7 sebanyak 20 data)</span>
+<span class="n">dummy_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span>
+<span class="c1">#resape menjadi matrix 20 1</span>
+<span class="n">dummy_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">dummy_data</span><span class="p">,(</span><span class="mi">20</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">modelName</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">dummy_data</span><span class="p">)</span>
+<span class="c1">#data asli</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fitur</span><span class="p">,</span><span class="n">target</span><span class="p">,</span><span class="s1">&#39;bo&#39;</span><span class="p">)</span>
+<span class="c1">#new data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dummy_data</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4df6c8cd00&gt;]
+</pre></div>
+</div>
+<img alt="_images/2932affecbcda4923a29cde81ecc9460d0348a884f80bbe5b204dba5a9eed9c6.png" src="_images/2932affecbcda4923a29cde81ecc9460d0348a884f80bbe5b204dba5a9eed9c6.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">()</span>
+<span class="c1">#melihat fitur</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="c1">#melihat target</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">target</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">fitur</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(442,) 
+ (442, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur1</span> <span class="o">=</span> <span class="n">fitur</span><span class="p">[:,</span><span class="mi">3</span><span class="p">:]</span>
+<span class="c1"># training</span>
+<span class="n">modelName</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">fitur1</span><span class="p">,</span><span class="n">target</span><span class="p">)</span>
+<span class="c1"># testing</span>
+<span class="c1"># modelName.predict(fitur1)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LinearRegression()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LinearRegression</label><div class="sk-toggleable__content"><pre>LinearRegression()</pre></div></div></div></div></div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">modelName</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelName</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>152.13348416289583
+[ 386.09686308 -925.89395408  663.92266084   81.40649912   79.46674232
+  957.01924623  121.55123356]
+</pre></div>
+</div>
+</div>
+</div>
+<p>##Rumus Multivariate
+<span class="math notranslate nohighlight">\(y = w_0+w_1x_1+w_2x_2+w_3x_3+w_4x_4+w_5x_5+w_6x_6+w_7x_7\)</span>
+<span class="math notranslate nohighlight">\(y = 152+386x_1+-925x_2+663x_3+81x_4+79x_5+957x_6+121x_7\)</span></p>
+<p>##R - Square</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(SStotal =  \sum_{i=1}^{n} (y_1 - \overline{y})^2 \)</span><br></p></li>
+<li><p><span class="math notranslate nohighlight">\(SSresidu = \sum_{i=1}^{n} (y_1 - f(x_1))^2\)</span><br></p></li>
+<li><p><span class="math notranslate nohighlight">\(R^2 = 1 - SSresidu/SStotal\)</span></p></li>
+</ul>
+<p>Keterangan :</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(f(x_1)\)</span> = data ke i</p></li>
+<li><p><span class="math notranslate nohighlight">\(\overline{y}\)</span> = rata rata target</p></li>
+<li><p><span class="math notranslate nohighlight">\(y\)</span> = target data</p></li>
+</ul>
+<p>##Polinomynal Regression
+Bentuk grafik melengkung</p>
+<ul class="simple">
+<li><p>Rumus polinomynal Regression<br>
+<span class="math notranslate nohighlight">\(y = w_0 + w_1x + w_2x^2\)</span> (Univariate Quadratic Regression)<br>
+<span class="math notranslate nohighlight">\(y = w_0 + w_1x_1 + w_2x_2 x_2 + x2_1\)</span> (Multivariate)</p></li>
+<li><p>Stochastic Gradien (update bobot)<br>
+<span class="math notranslate nohighlight">\(w_j = w_j - \lambda(f(x^i)-y^i)x^i_j\)</span></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">]])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitur</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">fitur</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">data2</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.,  1.,  1.],
+       [ 1.,  2.,  4.],
+       [ 1.,  4., 16.],
+       [ 1.,  3.,  9.],
+       [ 1.,  5., 25.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">modelName</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span><span class="n">target</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">modelName</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span><span class="n">modelName</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.3999999999999897 [ 0.         -0.05714286  0.14285714]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="contoh-soal-polynominal-regression">
+<h1>Contoh Soal Polynominal Regression<a class="headerlink" href="#contoh-soal-polynominal-regression" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">]])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># trasnformasi data</span>
+<span class="n">fitur</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">data2</span> <span class="o">=</span> <span class="n">fitur</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[ 1.  1.  1.]
+ [ 1.  2.  4.]
+ [ 1.  4. 16.]
+ [ 1.  3.  9.]
+ [ 1.  5. 25.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># buat class polynomial regression dan print iterasi di setiap epoch</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="k">class</span> <span class="nc">PolynomialRegression</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="n">lr</span> <span class="c1">#learning rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span> <span class="c1">#jumlah iterasi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span> <span class="c1">#jumlah data yang digunakan dalam 1 iterasi</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beban</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#beban</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beban</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">):</span>
+            <span class="n">indexes</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">)</span>
+            <span class="n">Xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">indexes</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Xs</span><span class="p">)</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Xs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beban</span><span class="p">)</span>
+            <span class="n">error</span> <span class="o">=</span> <span class="n">y_pred</span> <span class="o">-</span> <span class="n">ys</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">beban</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">beban</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="o">/</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Xs</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;epoch: &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="s1">&#39;beban: &#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beban</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="n">y_predicted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">beban</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">y_predicted</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">PolynomialRegression</span><span class="p">(</span><span class="n">lr</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data2</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Predict: &#39;</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch:  0 beban:  [0.33333333 1.43333333 6.36666667]
+epoch:  1 beban:  [ -6.01777778 -20.26222222 -71.        ]
+epoch:  2 beban:  [ 61.72059259 217.26977778 798.51955556]
+epoch:  3 beban:  [  -940.97188148  -4126.11087407 -19195.20786173]
+epoch:  4 beban:  [ 16889.46835325  58566.71516115 210541.94969152]
+epoch:  5 beban:  [ -359129.08069907 -1561700.86856103 -6990659.66683235]
+epoch:  6 beban:  [ 6902932.03254375 23124859.72913776 80766875.99048875]
+epoch:  7 beban:  [-3.61035417e+07 -8.59675786e+07 -2.14042785e+08]
+epoch:  8 beban:  [3.58631818e+08 1.61286119e+09 7.32873498e+09]
+epoch:  9 beban:  [-7.24553353e+09 -2.42386529e+10 -8.45751660e+10]
+epoch:  10 beban:  [8.45178266e+10 3.79701217e+11 1.84084490e+12]
+epoch:  11 beban:  [-1.86603252e+12 -8.24497865e+12 -3.93337526e+13]
+epoch:  12 beban:  [2.77780259e+13 9.36740453e+13 3.39972400e+14]
+epoch:  13 beban:  [-4.36856165e+14 -1.84742522e+15 -8.37681044e+15]
+epoch:  14 beban:  [8.47628662e+15 3.75329149e+16 1.79575622e+17]
+epoch:  15 beban:  [-1.58012325e+17 -5.47954528e+17 -1.96609010e+18]
+epoch:  16 beban:  [2.53082122e+18 1.06846059e+19 4.84737182e+19]
+epoch:  17 beban:  [-4.25820449e+19 -1.47903007e+20 -5.32623010e+20]
+epoch:  18 beban:  [5.20915971e+20 1.76550045e+21 6.26381697e+21]
+epoch:  19 beban:  [-6.11584883e+21 -2.07680208e+22 -7.37701330e+22]
+epoch:  20 beban:  [9.48605781e+22 4.01017464e+23 1.82014059e+24]
+epoch:  21 beban:  [-2.79187610e+24 -1.21875475e+25 -5.53777018e+25]
+epoch:  22 beban:  [2.57677485e+25 6.05115921e+25 1.41450723e+26]
+epoch:  23 beban:  [-1.31698203e+26 -4.72500658e+26 -1.74754986e+27]
+epoch:  24 beban:  [2.67604666e+27 1.17601171e+28 5.38044927e+28]
+epoch:  25 beban:  [-3.79987302e+28 -1.28020641e+29 -4.66305909e+29]
+epoch:  26 beban:  [4.04071768e+29 1.42306836e+30 5.21293620e+30]
+epoch:  27 beban:  [-7.97753143e+30 -3.50913082e+31 -1.60604779e+32]
+epoch:  28 beban:  [2.46594204e+32 1.07510880e+33 4.88387734e+33]
+epoch:  29 beban:  [-7.49808779e+33 -3.26987668e+34 -1.48573828e+35]
+epoch:  30 beban:  [1.04883113e+35 3.53469571e+35 1.28826366e+36]
+epoch:  31 beban:  [-1.28812742e+36 -5.78221320e+36 -2.79642926e+37]
+epoch:  32 beban:  [2.83469015e+37 1.25250674e+38 5.97586916e+38]
+epoch:  33 beban:  [-4.22023787e+38 -1.42316724e+39 -5.16507349e+39]
+epoch:  34 beban:  [2.31517967e+39 5.52347042e+39 1.36122450e+40]
+epoch:  35 beban:  [-1.69996721e+40 -7.48432921e+40 -3.46380188e+41]
+epoch:  36 beban:  [4.94580323e+41 2.22934507e+42 1.03350044e+43]
+epoch:  37 beban:  [-1.04843741e+43 -4.62949078e+43 -2.21286412e+44]
+epoch:  38 beban:  [1.56266697e+44 5.27021483e+44 1.91240994e+45]
+epoch:  39 beban:  [-1.86612936e+45 -6.34026542e+45 -2.24805090e+46]
+epoch:  40 beban:  [2.64498237e+46 1.16267146e+47 5.41822658e+47]
+epoch:  41 beban:  [-8.31560433e+47 -3.62580063e+48 -1.64618372e+49]
+epoch:  42 beban:  [1.66803129e+49 7.37512887e+49 3.52848281e+50]
+epoch:  43 beban:  [-2.49190149e+50 -8.40364171e+50 -3.04920877e+51]
+epoch:  44 beban:  [4.32474253e+51 1.97308646e+52 9.22687016e+52]
+epoch:  45 beban:  [-1.31860869e+53 -5.93702370e+53 -2.75144791e+54]
+epoch:  46 beban:  [2.79109376e+54 1.23249635e+55 5.89132687e+55]
+epoch:  47 beban:  [-9.03770720e+55 -3.94049681e+56 -1.78771403e+57]
+epoch:  48 beban:  [1.26200539e+57 4.25297723e+57 1.55026019e+58]
+epoch:  49 beban:  [-1.07083778e+58 -3.67415726e+58 -1.36803390e+59]
+epoch:  50 beban:  [1.33628209e+59 4.53438981e+59 1.60451512e+60]
+epoch:  51 beban:  [-2.06326676e+60 -8.72287378e+60 -3.95984191e+61]
+epoch:  52 beban:  [4.00675787e+61 1.77423143e+62 8.48833186e+62]
+epoch:  53 beban:  [-1.09826893e+63 -4.58777902e+63 -2.05767612e+64]
+epoch:  54 beban:  [2.93482833e+64 1.32520689e+65 6.14973528e+65]
+epoch:  55 beban:  [-7.30811867e+65 -3.16725626e+66 -1.45879978e+67]
+epoch:  56 beban:  [2.08212183e+67 9.39011591e+67 4.35381563e+68]
+epoch:  57 beban:  [-6.22095479e+68 -2.80191744e+69 -1.29886934e+70]
+epoch:  58 beban:  [1.31759855e+70 5.81820562e+70 2.78106673e+71]
+epoch:  59 beban:  [-1.96392097e+71 -6.62346018e+71 -2.40346358e+72]
+epoch:  60 beban:  [1.66021902e+72 5.69554906e+72 2.12172381e+73]
+epoch:  61 beban:  [-3.61460860e+73 -1.57225235e+74 -7.02923848e+74]
+epoch:  62 beban:  [8.34713916e+74 3.62195966e+75 1.67066673e+76]
+epoch:  63 beban:  [-1.46937251e+76 -5.09734422e+76 -1.83352546e+77]
+epoch:  64 beban:  [2.60460359e+77 1.18652008e+78 5.55061532e+78]
+epoch:  65 beban:  [-6.59725958e+78 -2.85840296e+79 -1.31614009e+80]
+epoch:  66 beban:  [1.33298883e+80 5.89635174e+80 2.81919837e+81]
+epoch:  67 beban:  [-1.99105140e+81 -6.71426188e+81 -2.43635949e+82]
+epoch:  68 beban:  [3.45551739e+82 1.57652156e+83 7.37237226e+83]
+epoch:  69 beban:  [-1.26068992e+84 -5.42703154e+84 -2.40961906e+85]
+epoch:  70 beban:  [3.11962311e+85 1.30380455e+86 5.86359840e+86]
+epoch:  71 beban:  [-5.14870041e+86 -1.78910511e+87 -6.44683115e+87]
+epoch:  72 beban:  [2.90295919e+87 6.88498200e+87 1.70000161e+88]
+epoch:  73 beban:  [-1.92861834e+88 -8.87184668e+88 -4.22133890e+89]
+epoch:  74 beban:  [4.28434583e+89 1.89067436e+90 9.02709336e+90]
+epoch:  75 beban:  [-4.20518732e+90 -9.90983930e+90 -2.29301570e+91]
+epoch:  76 beban:  [2.85634767e+91 1.26338524e+92 5.87101335e+92]
+epoch:  77 beban:  [-6.97145985e+92 -3.02384227e+93 -1.39265706e+94]
+epoch:  78 beban:  [1.65273871e+94 7.17386278e+94 3.30511210e+95]
+epoch:  79 beban:  [-3.34766863e+95 -1.48069071e+96 -7.07938861e+96]
+epoch:  80 beban:  [8.40220375e+96 3.64520938e+97 1.67700287e+98]
+epoch:  81 beban:  [-2.86519332e+98 -1.23510434e+99 -5.48634766e+99]
+epoch:  82 beban:  [7.10320776e+099 2.96853885e+100 1.33501900e+101]
+epoch:  83 beban:  [-6.18450776e+100 -1.45790715e+101 -3.41541604e+101]
+epoch:  84 beban:  [4.25555700e+101 1.88104777e+102 8.73411391e+102]
+epoch:  85 beban:  [-8.62429098e+102 -2.88875410e+103 -1.00656121e+104]
+epoch:  86 beban:  [1.42785888e+104 6.51918548e+104 3.05366228e+105]
+epoch:  87 beban:  [-2.16117062e+105 -7.26831935e+105 -2.64209497e+106]
+epoch:  88 beban:  [3.10598836e+106 1.36606581e+107 6.35822560e+107]
+epoch:  89 beban:  [-4.48996765e+107 -1.51343356e+108 -5.50431400e+108]
+epoch:  90 beban:  [9.37513300e+108 4.08196152e+109 1.82645738e+110]
+epoch:  91 beban:  [-2.60872952e+110 -1.17620923e+111 -5.45878837e+111]
+epoch:  92 beban:  [7.79958780e+111 3.51297677e+112 1.62844137e+113]
+epoch:  93 beban:  [-1.15168213e+113 -3.87535040e+113 -1.40997966e+114]
+epoch:  94 beban:  [1.65758539e+114 7.29003588e+114 3.39293325e+115]
+epoch:  95 beban:  [-4.02794052e+115 -1.74751877e+116 -8.04784970e+116]
+epoch:  96 beban:  [3.74265230e+116 8.80596843e+116 2.05267857e+117]
+epoch:  97 beban:  [-1.67697521e+117 -6.27727211e+117 -2.40990269e+118]
+epoch:  98 beban:  [3.69409290e+118 1.62003803e+119 7.40198093e+119]
+epoch:  99 beban:  [-7.30879128e+119 -2.44833586e+120 -8.53978825e+120]
+Predict:  [-1.17190032e+121 -3.97867038e+121 -1.47160835e+122 -8.49339809e+121
+ -2.26467265e+122]
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wahyu Aril Saputra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
