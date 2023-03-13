@@ -65,6 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'LinearRegression2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Confusion Matriks" href="ConfusionMatriks.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="LinearRegression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -155,10 +157,13 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown Files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Content with notebooks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="markdown-notebooks.html">Notebooks with MyST Markdown</a></li>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Matriks.html">Matriks Dasar</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contoh Soal Polynominal Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConfusionMatriks.html">Confusion Matriks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Klasifikasi</a></li>
+
+
 </ul>
 
     </div>
@@ -428,7 +433,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4df6c8cd00&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb2ded13c70&gt;]
 </pre></div>
 </div>
 <img alt="_images/2932affecbcda4923a29cde81ecc9460d0348a884f80bbe5b204dba5a9eed9c6.png" src="_images/2932affecbcda4923a29cde81ecc9460d0348a884f80bbe5b204dba5a9eed9c6.png" />
@@ -621,107 +626,110 @@ Bentuk grafik melengkung</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch:  0 beban:  [0.33333333 1.43333333 6.36666667]
-epoch:  1 beban:  [ -6.01777778 -20.26222222 -71.        ]
-epoch:  2 beban:  [ 61.72059259 217.26977778 798.51955556]
-epoch:  3 beban:  [  -940.97188148  -4126.11087407 -19195.20786173]
-epoch:  4 beban:  [ 16889.46835325  58566.71516115 210541.94969152]
-epoch:  5 beban:  [ -359129.08069907 -1561700.86856103 -6990659.66683235]
-epoch:  6 beban:  [ 6902932.03254375 23124859.72913776 80766875.99048875]
-epoch:  7 beban:  [-3.61035417e+07 -8.59675786e+07 -2.14042785e+08]
-epoch:  8 beban:  [3.58631818e+08 1.61286119e+09 7.32873498e+09]
-epoch:  9 beban:  [-7.24553353e+09 -2.42386529e+10 -8.45751660e+10]
-epoch:  10 beban:  [8.45178266e+10 3.79701217e+11 1.84084490e+12]
-epoch:  11 beban:  [-1.86603252e+12 -8.24497865e+12 -3.93337526e+13]
-epoch:  12 beban:  [2.77780259e+13 9.36740453e+13 3.39972400e+14]
-epoch:  13 beban:  [-4.36856165e+14 -1.84742522e+15 -8.37681044e+15]
-epoch:  14 beban:  [8.47628662e+15 3.75329149e+16 1.79575622e+17]
-epoch:  15 beban:  [-1.58012325e+17 -5.47954528e+17 -1.96609010e+18]
-epoch:  16 beban:  [2.53082122e+18 1.06846059e+19 4.84737182e+19]
-epoch:  17 beban:  [-4.25820449e+19 -1.47903007e+20 -5.32623010e+20]
-epoch:  18 beban:  [5.20915971e+20 1.76550045e+21 6.26381697e+21]
-epoch:  19 beban:  [-6.11584883e+21 -2.07680208e+22 -7.37701330e+22]
-epoch:  20 beban:  [9.48605781e+22 4.01017464e+23 1.82014059e+24]
-epoch:  21 beban:  [-2.79187610e+24 -1.21875475e+25 -5.53777018e+25]
-epoch:  22 beban:  [2.57677485e+25 6.05115921e+25 1.41450723e+26]
-epoch:  23 beban:  [-1.31698203e+26 -4.72500658e+26 -1.74754986e+27]
-epoch:  24 beban:  [2.67604666e+27 1.17601171e+28 5.38044927e+28]
-epoch:  25 beban:  [-3.79987302e+28 -1.28020641e+29 -4.66305909e+29]
-epoch:  26 beban:  [4.04071768e+29 1.42306836e+30 5.21293620e+30]
-epoch:  27 beban:  [-7.97753143e+30 -3.50913082e+31 -1.60604779e+32]
-epoch:  28 beban:  [2.46594204e+32 1.07510880e+33 4.88387734e+33]
-epoch:  29 beban:  [-7.49808779e+33 -3.26987668e+34 -1.48573828e+35]
-epoch:  30 beban:  [1.04883113e+35 3.53469571e+35 1.28826366e+36]
-epoch:  31 beban:  [-1.28812742e+36 -5.78221320e+36 -2.79642926e+37]
-epoch:  32 beban:  [2.83469015e+37 1.25250674e+38 5.97586916e+38]
-epoch:  33 beban:  [-4.22023787e+38 -1.42316724e+39 -5.16507349e+39]
-epoch:  34 beban:  [2.31517967e+39 5.52347042e+39 1.36122450e+40]
-epoch:  35 beban:  [-1.69996721e+40 -7.48432921e+40 -3.46380188e+41]
-epoch:  36 beban:  [4.94580323e+41 2.22934507e+42 1.03350044e+43]
-epoch:  37 beban:  [-1.04843741e+43 -4.62949078e+43 -2.21286412e+44]
-epoch:  38 beban:  [1.56266697e+44 5.27021483e+44 1.91240994e+45]
-epoch:  39 beban:  [-1.86612936e+45 -6.34026542e+45 -2.24805090e+46]
-epoch:  40 beban:  [2.64498237e+46 1.16267146e+47 5.41822658e+47]
-epoch:  41 beban:  [-8.31560433e+47 -3.62580063e+48 -1.64618372e+49]
-epoch:  42 beban:  [1.66803129e+49 7.37512887e+49 3.52848281e+50]
-epoch:  43 beban:  [-2.49190149e+50 -8.40364171e+50 -3.04920877e+51]
-epoch:  44 beban:  [4.32474253e+51 1.97308646e+52 9.22687016e+52]
-epoch:  45 beban:  [-1.31860869e+53 -5.93702370e+53 -2.75144791e+54]
-epoch:  46 beban:  [2.79109376e+54 1.23249635e+55 5.89132687e+55]
-epoch:  47 beban:  [-9.03770720e+55 -3.94049681e+56 -1.78771403e+57]
-epoch:  48 beban:  [1.26200539e+57 4.25297723e+57 1.55026019e+58]
-epoch:  49 beban:  [-1.07083778e+58 -3.67415726e+58 -1.36803390e+59]
-epoch:  50 beban:  [1.33628209e+59 4.53438981e+59 1.60451512e+60]
-epoch:  51 beban:  [-2.06326676e+60 -8.72287378e+60 -3.95984191e+61]
-epoch:  52 beban:  [4.00675787e+61 1.77423143e+62 8.48833186e+62]
-epoch:  53 beban:  [-1.09826893e+63 -4.58777902e+63 -2.05767612e+64]
-epoch:  54 beban:  [2.93482833e+64 1.32520689e+65 6.14973528e+65]
-epoch:  55 beban:  [-7.30811867e+65 -3.16725626e+66 -1.45879978e+67]
-epoch:  56 beban:  [2.08212183e+67 9.39011591e+67 4.35381563e+68]
-epoch:  57 beban:  [-6.22095479e+68 -2.80191744e+69 -1.29886934e+70]
-epoch:  58 beban:  [1.31759855e+70 5.81820562e+70 2.78106673e+71]
-epoch:  59 beban:  [-1.96392097e+71 -6.62346018e+71 -2.40346358e+72]
-epoch:  60 beban:  [1.66021902e+72 5.69554906e+72 2.12172381e+73]
-epoch:  61 beban:  [-3.61460860e+73 -1.57225235e+74 -7.02923848e+74]
-epoch:  62 beban:  [8.34713916e+74 3.62195966e+75 1.67066673e+76]
-epoch:  63 beban:  [-1.46937251e+76 -5.09734422e+76 -1.83352546e+77]
-epoch:  64 beban:  [2.60460359e+77 1.18652008e+78 5.55061532e+78]
-epoch:  65 beban:  [-6.59725958e+78 -2.85840296e+79 -1.31614009e+80]
-epoch:  66 beban:  [1.33298883e+80 5.89635174e+80 2.81919837e+81]
-epoch:  67 beban:  [-1.99105140e+81 -6.71426188e+81 -2.43635949e+82]
-epoch:  68 beban:  [3.45551739e+82 1.57652156e+83 7.37237226e+83]
-epoch:  69 beban:  [-1.26068992e+84 -5.42703154e+84 -2.40961906e+85]
-epoch:  70 beban:  [3.11962311e+85 1.30380455e+86 5.86359840e+86]
-epoch:  71 beban:  [-5.14870041e+86 -1.78910511e+87 -6.44683115e+87]
-epoch:  72 beban:  [2.90295919e+87 6.88498200e+87 1.70000161e+88]
-epoch:  73 beban:  [-1.92861834e+88 -8.87184668e+88 -4.22133890e+89]
-epoch:  74 beban:  [4.28434583e+89 1.89067436e+90 9.02709336e+90]
-epoch:  75 beban:  [-4.20518732e+90 -9.90983930e+90 -2.29301570e+91]
-epoch:  76 beban:  [2.85634767e+91 1.26338524e+92 5.87101335e+92]
-epoch:  77 beban:  [-6.97145985e+92 -3.02384227e+93 -1.39265706e+94]
-epoch:  78 beban:  [1.65273871e+94 7.17386278e+94 3.30511210e+95]
-epoch:  79 beban:  [-3.34766863e+95 -1.48069071e+96 -7.07938861e+96]
-epoch:  80 beban:  [8.40220375e+96 3.64520938e+97 1.67700287e+98]
-epoch:  81 beban:  [-2.86519332e+98 -1.23510434e+99 -5.48634766e+99]
-epoch:  82 beban:  [7.10320776e+099 2.96853885e+100 1.33501900e+101]
-epoch:  83 beban:  [-6.18450776e+100 -1.45790715e+101 -3.41541604e+101]
-epoch:  84 beban:  [4.25555700e+101 1.88104777e+102 8.73411391e+102]
-epoch:  85 beban:  [-8.62429098e+102 -2.88875410e+103 -1.00656121e+104]
-epoch:  86 beban:  [1.42785888e+104 6.51918548e+104 3.05366228e+105]
-epoch:  87 beban:  [-2.16117062e+105 -7.26831935e+105 -2.64209497e+106]
-epoch:  88 beban:  [3.10598836e+106 1.36606581e+107 6.35822560e+107]
-epoch:  89 beban:  [-4.48996765e+107 -1.51343356e+108 -5.50431400e+108]
-epoch:  90 beban:  [9.37513300e+108 4.08196152e+109 1.82645738e+110]
-epoch:  91 beban:  [-2.60872952e+110 -1.17620923e+111 -5.45878837e+111]
-epoch:  92 beban:  [7.79958780e+111 3.51297677e+112 1.62844137e+113]
-epoch:  93 beban:  [-1.15168213e+113 -3.87535040e+113 -1.40997966e+114]
-epoch:  94 beban:  [1.65758539e+114 7.29003588e+114 3.39293325e+115]
-epoch:  95 beban:  [-4.02794052e+115 -1.74751877e+116 -8.04784970e+116]
-epoch:  96 beban:  [3.74265230e+116 8.80596843e+116 2.05267857e+117]
-epoch:  97 beban:  [-1.67697521e+117 -6.27727211e+117 -2.40990269e+118]
-epoch:  98 beban:  [3.69409290e+118 1.62003803e+119 7.40198093e+119]
-epoch:  99 beban:  [-7.30879128e+119 -2.44833586e+120 -8.53978825e+120]
-Predict:  [-1.17190032e+121 -3.97867038e+121 -1.47160835e+122 -8.49339809e+121
- -2.26467265e+122]
+epoch:  1 beban:  [ -5.4        -18.78888889 -67.81555556]
+epoch:  2 beban:  [  87.636       369.72666667 1676.49288889]
+epoch:  3 beban:  [ -1472.48188148  -5114.68423704 -18419.53997037]
+epoch:  4 beban:  [ 8293.68847358 19670.54608099 48576.76989531]
+epoch:  5 beban:  [  -67099.70692087  -318284.39059388 -1515765.75406937]
+epoch:  6 beban:  [ 1338149.9547897   4623804.28224577 16596089.18559814]
+epoch:  7 beban:  [-2.13586458e+07 -9.01915389e+07 -4.09171731e+08]
+epoch:  8 beban:  [3.59443797e+08 1.24846341e+09 4.49592799e+09]
+epoch:  9 beban:  [-4.39710333e+09 -1.49027801e+10 -5.28735496e+10]
+epoch:  10 beban:  [5.16245390e+10 1.75305085e+11 6.22701592e+11]
+epoch:  11 beban:  [-9.51868834e+11 -4.19565533e+12 -1.92246829e+13]
+epoch:  12 beban:  [1.69235513e+13 5.86501051e+13 2.11065040e+14]
+epoch:  13 beban:  [-2.11473872e+14 -9.47270126e+14 -4.58462084e+15]
+epoch:  14 beban:  [5.44257887e+15 2.36028868e+16 1.08537407e+17]
+epoch:  15 beban:  [-5.04730465e+16 -1.18745198e+17 -2.76881458e+17]
+epoch:  16 beban:  [4.13436351e+17 1.89606762e+18 8.85734384e+18]
+epoch:  17 beban:  [-1.26602112e+19 -5.69927501e+19 -2.64135804e+20]
+epoch:  18 beban:  [2.32721574e+20 8.05793489e+20 2.89754421e+21]
+epoch:  19 beban:  [-4.11571030e+21 -1.87510046e+22 -8.77194244e+22]
+epoch:  20 beban:  [1.13657467e+23 4.74209102e+23 2.12861331e+24]
+epoch:  21 beban:  [-9.85902980e+23 -2.32415595e+24 -5.44694792e+24]
+epoch:  22 beban:  [7.51313305e+24 3.57556335e+25 1.70793239e+26]
+epoch:  23 beban:  [-2.21494828e+26 -9.22936490e+26 -4.13984407e+27]
+epoch:  24 beban:  [5.35210264e+27 2.23991164e+28 1.00695291e+29]
+epoch:  25 beban:  [-1.01851497e+29 -4.51199528e+29 -2.15958543e+30]
+epoch:  26 beban:  [1.00638009e+30 2.37123307e+30 5.48403044e+30]
+epoch:  27 beban:  [-7.56231156e+30 -3.60161461e+31 -1.72173206e+32]
+epoch:  28 beban:  [2.64659649e+32 1.15138497e+33 5.22365515e+33]
+epoch:  29 beban:  [-3.68702141e+33 -1.24272326e+34 -4.52985719e+34]
+epoch:  30 beban:  [4.41984700e+34 1.50177153e+35 5.32288613e+35]
+epoch:  31 beban:  [-3.67864741e+35 -1.26049545e+36 -4.70790776e+36]
+epoch:  32 beban:  [7.19296504e+36 3.16803924e+37 1.44887585e+38]
+epoch:  33 beban:  [-6.74766162e+37 -1.58407486e+38 -3.69785047e+38]
+epoch:  34 beban:  [4.18209179e+38 1.93254797e+39 9.23141679e+39]
+epoch:  35 beban:  [-9.37037466e+39 -4.13451841e+40 -1.97371159e+41]
+epoch:  36 beban:  [1.73647050e+41 6.02257631e+41 2.16125679e+42]
+epoch:  37 beban:  [-2.11360984e+42 -7.16416627e+42 -2.54248405e+43]
+epoch:  38 beban:  [1.13955099e+43 2.71116418e+43 6.72129892e+43]
+epoch:  39 beban:  [-6.28500898e+43 -2.24317796e+44 -8.24143928e+44]
+epoch:  40 beban:  [9.72231507e+44 4.25937536e+45 1.98155272e+46]
+epoch:  41 beban:  [-1.74342819e+46 -6.04589616e+46 -2.17344097e+47]
+epoch:  42 beban:  [1.88796420e+47 6.63109845e+47 2.43191659e+48]
+epoch:  43 beban:  [-2.43882911e+48 -1.09129065e+49 -5.27617855e+49]
+epoch:  44 beban:  [8.09491312e+49 3.52819749e+50 1.60013526e+51]
+epoch:  45 beban:  [-2.73516579e+51 -1.17885667e+52 -5.23860863e+52]
+epoch:  46 beban:  [8.95639213e+52 3.86132932e+53 1.71689737e+54]
+epoch:  47 beban:  [-2.63632060e+54 -1.15001993e+55 -5.22882862e+55]
+epoch:  48 beban:  [2.43285515e+55 5.71397679e+55 1.33550637e+56]
+epoch:  49 beban:  [-1.84121785e+56 -8.76786128e+56 -4.18878327e+57]
+epoch:  50 beban:  [7.16631030e+57 3.08174124e+58 1.36751263e+59]
+epoch:  51 beban:  [-1.38519561e+59 -6.12733326e+59 -2.93454319e+60]
+epoch:  52 beban:  [2.07248374e+60 6.98922300e+60 2.53577480e+61]
+epoch:  53 beban:  [-3.87341017e+61 -1.70770401e+62 -7.81843540e+62]
+epoch:  54 beban:  [6.88275817e+62 2.38521323e+63 8.58419246e+63]
+epoch:  55 beban:  [-1.31314186e+64 -5.78145049e+64 -2.64778476e+65]
+epoch:  56 beban:  [4.06548089e+65 1.77243410e+66 8.05144367e+66]
+epoch:  57 beban:  [-8.15819948e+66 -3.60715279e+67 -1.72572871e+68]
+epoch:  58 beban:  [1.51839850e+68 5.26589455e+68 1.88943794e+69]
+epoch:  59 beban:  [-2.22566523e+69 -9.76945034e+69 -4.55010688e+70]
+epoch:  60 beban:  [4.00363477e+70 1.38827528e+71 4.99032864e+71]
+epoch:  61 beban:  [-8.51219738e+71 -3.70160284e+72 -1.65695731e+73]
+epoch:  62 beban:  [1.67905694e+73 7.42377517e+73 3.55404337e+74]
+epoch:  63 beban:  [-5.45215502e+74 -2.37709723e+75 -1.07838658e+76]
+epoch:  64 beban:  [1.28036119e+76 5.55574629e+76 2.56115185e+77]
+epoch:  65 beban:  [-2.25258566e+77 -7.81426534e+77 -2.81092191e+78]
+epoch:  66 beban:  [2.81656961e+78 1.26155202e+79 6.10584374e+79]
+epoch:  67 beban:  [-9.36784342e+79 -4.08290908e+80 -1.85165561e+81]
+epoch:  68 beban:  [1.82811044e+81 6.12495735e+81 2.13740746e+82]
+epoch:  69 beban:  [-1.47457095e+82 -5.05993200e+82 -1.89313744e+83]
+epoch:  70 beban:  [2.43392711e+83 1.02808169e+84 4.65537797e+84]
+epoch:  71 beban:  [-4.71047965e+84 -2.08589263e+85 -9.98052015e+85]
+epoch:  72 beban:  [1.01128150e+86 4.47052695e+86 2.13390646e+87]
+epoch:  73 beban:  [-1.87758432e+87 -6.51134030e+87 -2.33667123e+88]
+epoch:  74 beban:  [1.05169079e+88 2.49428568e+88 6.16543623e+88]
+epoch:  75 beban:  [-9.21620405e+88 -4.21191274e+89 -1.96137786e+90]
+epoch:  76 beban:  [2.80338026e+90 1.26212570e+91 5.84997028e+91]
+epoch:  77 beban:  [-8.35836274e+91 -3.76481081e+92 -1.74525092e+93]
+epoch:  78 beban:  [1.23429596e+93 4.15333576e+93 1.51111450e+94]
+epoch:  79 beban:  [-1.77648035e+94 -7.81293507e+94 -3.63630195e+95]
+epoch:  80 beban:  [3.68476366e+95 1.62895215e+96 7.78479856e+96]
+epoch:  81 beban:  [-6.84958393e+96 -2.37544490e+97 -8.52387313e+97]
+epoch:  82 beban:  [1.45401706e+98 6.32294998e+98 2.83053126e+99]
+epoch:  83 beban:  [-1.31651205e+99 -3.08849385e+99 -7.24247898e+99]
+epoch:  84 beban:  [8.19124612e+099 3.78463454e+100 1.80725858e+101]
+epoch:  85 beban:  [-1.59349314e+101 -5.51364118e+101 -1.97861335e+102]
+epoch:  86 beban:  [1.98222940e+102 8.88029945e+102 4.29858214e+103]
+epoch:  87 beban:  [-4.35698948e+103 -1.92531930e+104 -9.18558324e+104]
+epoch:  88 beban:  [4.27954032e+104 1.00830027e+105 2.33343647e+105]
+epoch:  89 beban:  [-2.21715791e+105 -1.05368040e+106 -5.25337992e+106]
+epoch:  90 beban:  [5.19482716e+106 1.73675458e+107 6.02528610e+107]
+epoch:  91 beban:  [-8.54678429e+107 -3.90280081e+108 -1.82844847e+109]
+epoch:  92 beban:  [1.29405822e+109 4.35208308e+109 1.58199416e+110]
+epoch:  93 beban:  [-1.54335827e+110 -5.24489553e+110 -1.85940835e+111]
+epoch:  94 beban:  [2.84252312e+111 1.25289494e+112 5.74125531e+112]
+epoch:  95 beban:  [-5.66992154e+112 -1.89896551e+113 -6.62235128e+113]
+epoch:  96 beban:  [6.61844914e+113 2.97310336e+114 1.44145004e+115]
+epoch:  97 beban:  [-2.21162281e+115 -9.63844475e+115 -4.37095208e+116]
+epoch:  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98 beban:  [6.24156835e+116 2.81419551e+117 1.30549015e+118]
+epoch:  99 beban:  [-9.23333549e+117 -3.10683048e+118 -1.13029487e+119]
+Predict:  [-1.53331128e+119 -5.23487895e+119 -1.94197835e+120 -1.11970364e+120
+ -2.99031204e+120]
 </pre></div>
 </div>
 </div>
@@ -756,6 +764,24 @@ Predict:  [-1.17190032e+121 -3.97867038e+121 -1.47160835e+122 -8.49339809e+121
                 <footer class="bd-footer-article">
                   <!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="LinearRegression.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ConfusionMatriks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Confusion Matriks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
