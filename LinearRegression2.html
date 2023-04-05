@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contoh Soal Polynominal Regression &#8212; 20-055 Machine Learning</title>
+    <title>Materi 3 : Linear Regression (Multivariate) &#8212; 20-055 Machine Learning</title>
   
   
   
@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,8 +37,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'LinearRegression2';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Confusion Matriks" href="ConfusionMatriks.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="LinearRegression.html" />
+    <link rel="next" title="Materi 4 : Confusion Matriks" href="ConfusionMatriks.html" />
+    <link rel="prev" title="Materi 2 : Linear Regression" href="LinearRegression.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,12 +158,11 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Matriks.html">Matriks Dasar</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Contoh Soal Polynominal Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ConfusionMatriks.html">Confusion Matriks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Klasifikasi</a></li>
-
-
+<li class="toctree-l1"><a class="reference internal" href="Matriks.html">Materi 1 : Matriks Dasar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearRegression.html">Materi 2 : Linear Regression</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Materi 3 : Linear Regression (Multivariate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConfusionMatriks.html">Materi 4 : Confusion Matriks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Materi 5 : Logistik Regression</a></li>
 </ul>
 
     </div>
@@ -334,7 +333,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -345,11 +346,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Contoh Soal Polynominal Regression</h1>
+    <h1>Materi 3 : Linear Regression (Multivariate)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-soal-polynominal-regression">Contoh Soal Polynominal Regression</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -359,7 +368,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>#Linear Regression 2</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="materi-3-linear-regression-multivariate">
+<h1>Materi 3 : Linear Regression (Multivariate)<a class="headerlink" href="#materi-3-linear-regression-multivariate" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -433,10 +443,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb2ded13c70&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcfb34e7310&gt;]
 </pre></div>
 </div>
-<img alt="_images/2932affecbcda4923a29cde81ecc9460d0348a884f80bbe5b204dba5a9eed9c6.png" src="_images/2932affecbcda4923a29cde81ecc9460d0348a884f80bbe5b204dba5a9eed9c6.png" />
+<img alt="_images/fea1541f0ee604fcdb69456e1a8f9c9c1fc404f469e8f58fa7dcbbe90d438337.png" src="_images/fea1541f0ee604fcdb69456e1a8f9c9c1fc404f469e8f58fa7dcbbe90d438337.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -563,7 +573,7 @@ Bentuk grafik melengkung</p>
 </div>
 </div>
 <div class="section" id="contoh-soal-polynominal-regression">
-<h1>Contoh Soal Polynominal Regression<a class="headerlink" href="#contoh-soal-polynominal-regression" title="Permalink to this heading">#</a></h1>
+<h2>Contoh Soal Polynominal Regression<a class="headerlink" href="#contoh-soal-polynominal-regression" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">],[</span><span class="mi">4</span><span class="p">],[</span><span class="mi">3</span><span class="p">],[</span><span class="mi">5</span><span class="p">]])</span>
@@ -625,112 +635,110 @@ Bentuk grafik melengkung</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch:  0 beban:  [0.33333333 1.43333333 6.36666667]
-epoch:  1 beban:  [ -5.4        -18.78888889 -67.81555556]
-epoch:  2 beban:  [  87.636       369.72666667 1676.49288889]
-epoch:  3 beban:  [ -1472.48188148  -5114.68423704 -18419.53997037]
-epoch:  4 beban:  [ 8293.68847358 19670.54608099 48576.76989531]
-epoch:  5 beban:  [  -67099.70692087  -318284.39059388 -1515765.75406937]
-epoch:  6 beban:  [ 1338149.9547897   4623804.28224577 16596089.18559814]
-epoch:  7 beban:  [-2.13586458e+07 -9.01915389e+07 -4.09171731e+08]
-epoch:  8 beban:  [3.59443797e+08 1.24846341e+09 4.49592799e+09]
-epoch:  9 beban:  [-4.39710333e+09 -1.49027801e+10 -5.28735496e+10]
-epoch:  10 beban:  [5.16245390e+10 1.75305085e+11 6.22701592e+11]
-epoch:  11 beban:  [-9.51868834e+11 -4.19565533e+12 -1.92246829e+13]
-epoch:  12 beban:  [1.69235513e+13 5.86501051e+13 2.11065040e+14]
-epoch:  13 beban:  [-2.11473872e+14 -9.47270126e+14 -4.58462084e+15]
-epoch:  14 beban:  [5.44257887e+15 2.36028868e+16 1.08537407e+17]
-epoch:  15 beban:  [-5.04730465e+16 -1.18745198e+17 -2.76881458e+17]
-epoch:  16 beban:  [4.13436351e+17 1.89606762e+18 8.85734384e+18]
-epoch:  17 beban:  [-1.26602112e+19 -5.69927501e+19 -2.64135804e+20]
-epoch:  18 beban:  [2.32721574e+20 8.05793489e+20 2.89754421e+21]
-epoch:  19 beban:  [-4.11571030e+21 -1.87510046e+22 -8.77194244e+22]
-epoch:  20 beban:  [1.13657467e+23 4.74209102e+23 2.12861331e+24]
-epoch:  21 beban:  [-9.85902980e+23 -2.32415595e+24 -5.44694792e+24]
-epoch:  22 beban:  [7.51313305e+24 3.57556335e+25 1.70793239e+26]
-epoch:  23 beban:  [-2.21494828e+26 -9.22936490e+26 -4.13984407e+27]
-epoch:  24 beban:  [5.35210264e+27 2.23991164e+28 1.00695291e+29]
-epoch:  25 beban:  [-1.01851497e+29 -4.51199528e+29 -2.15958543e+30]
-epoch:  26 beban:  [1.00638009e+30 2.37123307e+30 5.48403044e+30]
-epoch:  27 beban:  [-7.56231156e+30 -3.60161461e+31 -1.72173206e+32]
-epoch:  28 beban:  [2.64659649e+32 1.15138497e+33 5.22365515e+33]
-epoch:  29 beban:  [-3.68702141e+33 -1.24272326e+34 -4.52985719e+34]
-epoch:  30 beban:  [4.41984700e+34 1.50177153e+35 5.32288613e+35]
-epoch:  31 beban:  [-3.67864741e+35 -1.26049545e+36 -4.70790776e+36]
-epoch:  32 beban:  [7.19296504e+36 3.16803924e+37 1.44887585e+38]
-epoch:  33 beban:  [-6.74766162e+37 -1.58407486e+38 -3.69785047e+38]
-epoch:  34 beban:  [4.18209179e+38 1.93254797e+39 9.23141679e+39]
-epoch:  35 beban:  [-9.37037466e+39 -4.13451841e+40 -1.97371159e+41]
-epoch:  36 beban:  [1.73647050e+41 6.02257631e+41 2.16125679e+42]
-epoch:  37 beban:  [-2.11360984e+42 -7.16416627e+42 -2.54248405e+43]
-epoch:  38 beban:  [1.13955099e+43 2.71116418e+43 6.72129892e+43]
-epoch:  39 beban:  [-6.28500898e+43 -2.24317796e+44 -8.24143928e+44]
-epoch:  40 beban:  [9.72231507e+44 4.25937536e+45 1.98155272e+46]
-epoch:  41 beban:  [-1.74342819e+46 -6.04589616e+46 -2.17344097e+47]
-epoch:  42 beban:  [1.88796420e+47 6.63109845e+47 2.43191659e+48]
-epoch:  43 beban:  [-2.43882911e+48 -1.09129065e+49 -5.27617855e+49]
-epoch:  44 beban:  [8.09491312e+49 3.52819749e+50 1.60013526e+51]
-epoch:  45 beban:  [-2.73516579e+51 -1.17885667e+52 -5.23860863e+52]
-epoch:  46 beban:  [8.95639213e+52 3.86132932e+53 1.71689737e+54]
-epoch:  47 beban:  [-2.63632060e+54 -1.15001993e+55 -5.22882862e+55]
-epoch:  48 beban:  [2.43285515e+55 5.71397679e+55 1.33550637e+56]
-epoch:  49 beban:  [-1.84121785e+56 -8.76786128e+56 -4.18878327e+57]
-epoch:  50 beban:  [7.16631030e+57 3.08174124e+58 1.36751263e+59]
-epoch:  51 beban:  [-1.38519561e+59 -6.12733326e+59 -2.93454319e+60]
-epoch:  52 beban:  [2.07248374e+60 6.98922300e+60 2.53577480e+61]
-epoch:  53 beban:  [-3.87341017e+61 -1.70770401e+62 -7.81843540e+62]
-epoch:  54 beban:  [6.88275817e+62 2.38521323e+63 8.58419246e+63]
-epoch:  55 beban:  [-1.31314186e+64 -5.78145049e+64 -2.64778476e+65]
-epoch:  56 beban:  [4.06548089e+65 1.77243410e+66 8.05144367e+66]
-epoch:  57 beban:  [-8.15819948e+66 -3.60715279e+67 -1.72572871e+68]
-epoch:  58 beban:  [1.51839850e+68 5.26589455e+68 1.88943794e+69]
-epoch:  59 beban:  [-2.22566523e+69 -9.76945034e+69 -4.55010688e+70]
-epoch:  60 beban:  [4.00363477e+70 1.38827528e+71 4.99032864e+71]
-epoch:  61 beban:  [-8.51219738e+71 -3.70160284e+72 -1.65695731e+73]
-epoch:  62 beban:  [1.67905694e+73 7.42377517e+73 3.55404337e+74]
-epoch:  63 beban:  [-5.45215502e+74 -2.37709723e+75 -1.07838658e+76]
-epoch:  64 beban:  [1.28036119e+76 5.55574629e+76 2.56115185e+77]
-epoch:  65 beban:  [-2.25258566e+77 -7.81426534e+77 -2.81092191e+78]
-epoch:  66 beban:  [2.81656961e+78 1.26155202e+79 6.10584374e+79]
-epoch:  67 beban:  [-9.36784342e+79 -4.08290908e+80 -1.85165561e+81]
-epoch:  68 beban:  [1.82811044e+81 6.12495735e+81 2.13740746e+82]
-epoch:  69 beban:  [-1.47457095e+82 -5.05993200e+82 -1.89313744e+83]
-epoch:  70 beban:  [2.43392711e+83 1.02808169e+84 4.65537797e+84]
-epoch:  71 beban:  [-4.71047965e+84 -2.08589263e+85 -9.98052015e+85]
-epoch:  72 beban:  [1.01128150e+86 4.47052695e+86 2.13390646e+87]
-epoch:  73 beban:  [-1.87758432e+87 -6.51134030e+87 -2.33667123e+88]
-epoch:  74 beban:  [1.05169079e+88 2.49428568e+88 6.16543623e+88]
-epoch:  75 beban:  [-9.21620405e+88 -4.21191274e+89 -1.96137786e+90]
-epoch:  76 beban:  [2.80338026e+90 1.26212570e+91 5.84997028e+91]
-epoch:  77 beban:  [-8.35836274e+91 -3.76481081e+92 -1.74525092e+93]
-epoch:  78 beban:  [1.23429596e+93 4.15333576e+93 1.51111450e+94]
-epoch:  79 beban:  [-1.77648035e+94 -7.81293507e+94 -3.63630195e+95]
-epoch:  80 beban:  [3.68476366e+95 1.62895215e+96 7.78479856e+96]
-epoch:  81 beban:  [-6.84958393e+96 -2.37544490e+97 -8.52387313e+97]
-epoch:  82 beban:  [1.45401706e+98 6.32294998e+98 2.83053126e+99]
-epoch:  83 beban:  [-1.31651205e+99 -3.08849385e+99 -7.24247898e+99]
-epoch:  84 beban:  [8.19124612e+099 3.78463454e+100 1.80725858e+101]
-epoch:  85 beban:  [-1.59349314e+101 -5.51364118e+101 -1.97861335e+102]
-epoch:  86 beban:  [1.98222940e+102 8.88029945e+102 4.29858214e+103]
-epoch:  87 beban:  [-4.35698948e+103 -1.92531930e+104 -9.18558324e+104]
-epoch:  88 beban:  [4.27954032e+104 1.00830027e+105 2.33343647e+105]
-epoch:  89 beban:  [-2.21715791e+105 -1.05368040e+106 -5.25337992e+106]
-epoch:  90 beban:  [5.19482716e+106 1.73675458e+107 6.02528610e+107]
-epoch:  91 beban:  [-8.54678429e+107 -3.90280081e+108 -1.82844847e+109]
-epoch:  92 beban:  [1.29405822e+109 4.35208308e+109 1.58199416e+110]
-epoch:  93 beban:  [-1.54335827e+110 -5.24489553e+110 -1.85940835e+111]
-epoch:  94 beban:  [2.84252312e+111 1.25289494e+112 5.74125531e+112]
-epoch:  95 beban:  [-5.66992154e+112 -1.89896551e+113 -6.62235128e+113]
-epoch:  96 beban:  [6.61844914e+113 2.97310336e+114 1.44145004e+115]
-epoch:  97 beban:  [-2.21162281e+115 -9.63844475e+115 -4.37095208e+116]
-epoch:  
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch:  0 beban:  [0.2        0.63333333 2.23333333]
+epoch:  1 beban:  [ -1.29777778  -4.65777778 -17.73777778]
+epoch:  2 beban:  [ 21.19007407  92.69496296 430.35125926]
+epoch:  3 beban:  [  -556.60551605  -2325.75539753 -10442.81627654]
+epoch:  4 beban:  [ 10291.77072214  34551.55018749 120649.96672148]
+epoch:  5 beban:  [ -53950.83419093 -128410.38744354 -319736.91113068]
+epoch:  6 beban:  [ 299046.64622088 1067037.5107404  3918410.09478856]
+epoch:  7 beban:  [ -1772856.69811728  -4192814.33726224 -10301728.62931229]
+epoch:  8 beban:  [1.42244541e+07 6.75123606e+07 3.21605589e+08]
+epoch:  9 beban:  [-2.28074788e+08 -7.65638931e+08 -2.77924246e+09]
+epoch:  10 beban:  [3.94088512e+09 1.79841494e+10 8.40988373e+10]
+epoch:  11 beban:  [-3.92961573e+10 -9.21152354e+10 -2.14044090e+11]
+epoch:  12 beban:  [2.41986134e+11 1.11876625e+12 5.34589485e+12]
+epoch:  13 beban:  [-8.21126905e+12 -3.57528209e+13 -1.62205905e+14]
+epoch:  14 beban:  [2.77254162e+14 1.19500224e+15 5.31030255e+15]
+epoch:  15 beban:  [-6.30432491e+15 -2.73648863e+16 -1.26253802e+17]
+epoch:  16 beban:  [1.80203060e+17 8.12654811e+17 3.76774499e+18]
+epoch:  17 beban:  [-2.66485819e+18 -8.96643040e+18 -3.26223366e+19]
+epoch:  18 beban:  [5.55587607e+19 2.41924387e+20 1.08246699e+21]
+epoch:  19 beban:  [-1.40176343e+21 -5.85619001e+21 -2.63295430e+22]
+epoch:  20 beban:  [2.31190008e+22 8.03369100e+22 2.89490485e+23]
+epoch:  21 beban:  [-4.93811805e+23 -2.14713703e+24 -9.61046183e+24]
+epoch:  22 beban:  [9.73860108e+24 4.30584127e+25 2.06137779e+26]
+epoch:  23 beban:  [-1.45578667e+26 -4.90956744e+26 -1.78130850e+27]
+epoch:  24 beban:  [1.73819777e+27 5.90562642e+27 2.09396381e+28]
+epoch:  25 beban:  [-2.09500938e+28 -9.39939031e+28 -4.55285280e+29]
+epoch:  26 beban:  [6.49875609e+29 2.92805437e+30 1.35547268e+31]
+epoch:  27 beban:  [-1.93677476e+31 -8.72344501e+31 -4.04408412e+32]
+epoch:  28 beban:  [6.91476827e+32 2.97764396e+33 1.32239889e+34]
+epoch:  29 beban:  [-1.16324997e+34 -4.03409407e+34 -1.45497008e+35]
+epoch:  30 beban:  [1.26385741e+35 4.43914032e+35 1.62756300e+36]
+epoch:  31 beban:  [-2.77642344e+36 -1.20649506e+37 -5.39697811e+37]
+epoch:  32 beban:  [5.46883201e+37 2.41805402e+38 1.15765007e+39]
+epoch:  33 beban:  [-1.37391388e+39 -5.96072275e+39 -2.74213138e+40]
+epoch:  34 beban:  [2.70589644e+40 9.07038191e+40 3.16234648e+41]
+epoch:  35 beban:  [-1.41363865e+41 -3.36518000e+41 -8.38270634e+41]
+epoch:  36 beban:  [1.04675466e+42 4.60763614e+42 2.13099329e+43]
+epoch:  37 beban:  [-9.92408337e+42 -2.33238644e+43 -5.43201633e+43]
+epoch:  38 beban:  [5.16081855e+43 2.45276485e+44 1.22223534e+45]
+epoch:  39 beban:  [-1.74644094e+45 -7.85613716e+45 -3.63371529e+46]
+epoch:  40 beban:  [5.58145162e+46 2.43182401e+47 1.10435202e+48]
+epoch:  41 beban:  [-1.11896759e+48 -4.94765621e+48 -2.36708104e+49]
+epoch:  42 beban:  [2.80931714e+49 1.21881432e+50 5.60709796e+50]
+epoch:  43 beban:  [-2.60757004e+50 -6.13466959e+50 -1.43031007e+51]
+epoch:  44 beban:  [1.35921996e+51 6.45825351e+51 3.21792348e+52]
+epoch:  45 beban:  [-3.18207718e+52 -1.06383966e+53 -3.69089244e+53]
+epoch:  46 beban:  [2.54546702e+53 8.73626818e+53 3.27076507e+54]
+epoch:  47 beban:  [-4.20508600e+54 -1.77618964e+55 -8.04274165e+55]
+epoch:  48 beban:  [5.66590566e+55 1.91359331e+56 6.97626248e+56]
+epoch:  49 beban:  [-8.96453207e+56 -3.79058883e+57 -1.71842634e+58]
+epoch:  50 beban:  [2.45146904e+58 1.10648721e+59 5.13295177e+59]
+epoch:  51 beban:  [-3.63061437e+59 -1.22154374e+60 -4.44409643e+60]
+epoch:  52 beban:  [3.06913908e+60 1.05322192e+61 3.92237472e+61]
+epoch:  53 beban:  [-3.92701138e+61 -1.76017841e+62 -8.50277495e+62]
+epoch:  54 beban:  [1.00945266e+63 4.37753257e+63 2.01314349e+64]
+epoch:  55 beban:  [-1.42049213e+64 -4.79087708e+64 -1.74423236e+65]
+epoch:  56 beban:  [7.81948350e+64 1.86597523e+65 4.59478823e+65]
+epoch:  57 beban:  [-1.81367604e+65 -4.67494875e+65 -1.30189328e+66]
+epoch:  58 beban:  [1.08974197e+66 3.97850477e+66 1.49569406e+67]
+epoch:  59 beban:  [-1.76625477e+67 -7.72704036e+67 -3.59090032e+68]
+epoch:  60 beban:  [3.54405192e+68 1.18772019e+69 4.13826881e+69]
+epoch:  61 beban:  [-7.05323808e+69 -3.07291109e+70 -1.37704478e+71]
+epoch:  62 beban:  [1.63526044e+71 7.09530329e+71 3.27247830e+72]
+epoch:  63 beban:  [-2.87818251e+72 -9.98460303e+72 -3.59150595e+73]
+epoch:  64 beban:  [3.11985814e+73 1.09575751e+74 4.01841818e+74]
+epoch:  65 beban:  [-4.73609456e+74 -2.07701547e+75 -9.66346504e+75]
+epoch:  66 beban:  [9.79108732e+75 4.32897730e+76 2.06885632e+77]
+epoch:  67 beban:  [-2.04164398e+77 -6.84216919e+77 -2.37978961e+78]
+epoch:  68 beban:  [2.37849949e+78 1.06841707e+79 5.18080413e+79]
+epoch:  69 beban:  [-5.25165039e+79 -2.32043518e+80 -1.10698517e+81]
+epoch:  70 beban:  [1.12159859e+81 4.95853816e+81 2.36714750e+82]
+epoch:  71 beban:  [-4.04264349e+82 -1.74188952e+83 -7.72964630e+83]
+epoch:  72 beban:  [6.79969275e+83 2.35798006e+84 8.50498590e+84]
+epoch:  73 beban:  [-5.89171313e+84 -2.01467312e+85 -7.51041157e+85]
+epoch:  74 beban:  [5.19712431e+85 1.78084062e+86 6.61491249e+86]
+epoch:  75 beban:  [-6.46092641e+86 -2.19257636e+87 -7.75997206e+87]
+epoch:  76 beban:  [9.12959026e+87 4.01351147e+88 1.87052617e+89]
+epoch:  77 beban:  [-2.42095055e+89 -1.01135985e+90 -4.54029846e+90]
+epoch:  78 beban:  [4.47447758e+90 1.50219014e+91 5.24553928e+91]
+epoch:  79 beban:  [-3.61968555e+91 -1.24178930e+92 -4.64574109e+92]
+epoch:  80 beban:  [5.97276345e+92 2.52290858e+93 1.14243131e+94]
+epoch:  81 beban:  [-1.95121366e+94 -8.41759039e+94 -3.74075729e+95]
+epoch:  82 beban:  [2.63933132e+95 8.89551002e+95 3.24849994e+96]
+epoch:  83 beban:  [-2.81504039e+96 -9.91384184e+96 -3.63079645e+97]
+epoch:  84 beban:  [3.15770573e+97 1.10773256e+98 4.05603918e+98]
+epoch:  85 beban:  [-2.81350484e+98 -9.61105538e+98 -3.57704394e+99]
+epoch:  86 beban:  [4.59807540e+099 1.94276460e+100 8.79927536e+100]
+epoch:  87 beban:  [-1.50287380e+101 -6.48338820e+101 -2.88118406e+102]
+epoch:  88 beban:  [2.03284925e+102 6.85144661e+102 2.50204165e+103]
+epoch:  89 beban:  [-1.12169193e+103 -2.67769648e+103 -6.58833429e+103]
+epoch:  90 beban:  [6.16250935e+103 2.19887542e+104 8.08550998e+104]
+epoch:  91 beban:  [-1.38007743e+105 -5.99280892e+105 -2.68048831e+106]
+epoch:  92 beban:  [1.24654376e+106 2.92457105e+106 6.85931419e+106]
+epoch:  93 beban:  [-7.75801516e+106 -3.58438940e+107 -1.71161470e+108]
+epoch:  94 beban:  [2.44591810e+108 1.10094621e+109 5.09885831e+109]
+epoch:  95 beban:  [-6.05881926e+109 -2.62610459e+110 -1.20964419e+111]
+epoch:  96 beban:  [1.72650931e+111 7.78632009e+111 3.61019179e+112]
+epoch:  97 beban:  [-3.66244116e+112 -1.61715636e+113 -7.72984531e+113]
+epoch:  98 beban:  [7.62771101e+113 2.55644576e+114 8.89153198e+114]
+epoch:  99 beban:  [-8.88675686e+114 -3.99189152e+115 -1.93568815e+116]
+Predict:  [-2.42374487e+116 -8.62999846e+116 -3.26566345e+117 -1.87076283e+117
+ -5.04770170e+117]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>98 beban:  [6.24156835e+116 2.81419551e+117 1.30549015e+118]
-epoch:  99 beban:  [-9.23333549e+117 -3.10683048e+118 -1.13029487e+119]
-Predict:  [-1.53331128e+119 -5.23487895e+119 -1.94197835e+120 -1.11970364e+120
- -2.99031204e+120]
-</pre></div>
 </div>
 </div>
 </div>
@@ -762,7 +770,10 @@ Predict:  [-1.53331128e+119 -5.23487895e+119 -1.94197835e+120 -1.11970364e+120
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="LinearRegression.html"
@@ -770,7 +781,7 @@ Predict:  [-1.53331128e+119 -5.23487895e+119 -1.94197835e+120 -1.11970364e+120
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">&lt;no title&gt;</p>
+        <p class="prev-next-title">Materi 2 : Linear Regression</p>
       </div>
     </a>
     <a class="right-next"
@@ -778,21 +789,38 @@ Predict:  [-1.53331128e+119 -5.23487895e+119 -1.94197835e+120 -1.11970364e+120
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Confusion Matriks</p>
+        <p class="prev-next-title">Materi 4 : Confusion Matriks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
             
             
               
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-soal-polynominal-regression">Contoh Soal Polynominal Regression</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -822,7 +850,7 @@ By Wahyu Aril Saputra
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -831,8 +859,8 @@ By Wahyu Aril Saputra
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>

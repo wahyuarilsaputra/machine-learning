@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>&lt;no title&gt; &#8212; 20-055 Machine Learning</title>
+    <title>Materi 2 : Linear Regression &#8212; 20-055 Machine Learning</title>
   
   
   
@@ -18,12 +18,12 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
   <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
@@ -37,8 +37,8 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -65,8 +65,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'LinearRegression';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contoh Soal Polynominal Regression" href="LinearRegression2.html" />
-    <link rel="prev" title="Matriks Dasar" href="Matriks.html" />
+    <link rel="next" title="Materi 3 : Linear Regression (Multivariate)" href="LinearRegression2.html" />
+    <link rel="prev" title="Materi 1 : Matriks Dasar" href="Matriks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,13 +157,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="Matriks.html">Matriks Dasar</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LinearRegression2.html">Contoh Soal Polynominal Regression</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ConfusionMatriks.html">Confusion Matriks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Klasifikasi</a></li>
-
-
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Matriks.html">Materi 1 : Matriks Dasar</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Materi 2 : Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearRegression2.html">Materi 3 : Linear Regression (Multivariate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConfusionMatriks.html">Materi 4 : Confusion Matriks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Materi 5 : Logistik Regression</a></li>
 </ul>
 
     </div>
@@ -347,7 +346,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Materi 2 : Linear Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -356,9 +355,15 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-data-fitur-dan-target">Membuat Data Fitur dan target</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-direct-matriks">Perhitungan Direct Matriks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-offline-learning">Perhitungan Offline Learning</a></li>
 </ul>
-
+</li>
+</ul>
             </nav>
         </div>
     </div>
@@ -369,7 +374,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>#Linear Regression</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="materi-2-linear-regression">
+<h1>Materi 2 : Linear Regression<a class="headerlink" href="#materi-2-linear-regression" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -379,6 +385,8 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="section" id="membuat-data-fitur-dan-target">
+<h2>Membuat Data Fitur dan target<a class="headerlink" href="#membuat-data-fitur-dan-target" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#data fitur (X) dan target (Y)</span>
@@ -388,7 +396,10 @@ document.write(`
 </div>
 </div>
 </div>
-<p>##Direct Matriks</p>
+<p>##Direct Matriks
+matriks yang digunakan untuk merepresentasikan hubungan antara input dan output pada model yang dilatih dengan data yang diberikan.</p>
+<div class="section" id="rumus">
+<h3>Rumus<a class="headerlink" href="#rumus" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Rumus Direct Matriks<br>
 <span class="math notranslate nohighlight">\(y = w_0 + w_1x\)</span><br></p></li>
@@ -409,6 +420,9 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(w_0\)</span> = Intercept/Bias</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_1\)</span> = Koefisien</p></li>
 </ul>
+</div>
+<div class="section" id="perhitungan-direct-matriks">
+<h3>Perhitungan Direct Matriks<a class="headerlink" href="#perhitungan-direct-matriks" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#membuat kelas yang dibutuhkan</span>
@@ -440,6 +454,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Menentukan meanData,Variant Data,Covariant data,update bobot,dan prediksi</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
@@ -458,12 +473,16 @@ w0 [4.15 2.65 2.65 3.4  1.15]
 </div>
 </div>
 </div>
-<p>##Stochastis (Perulangan)</p>
+<p>##Stochastic Gradient Descent (Perulangan)
+algoritma optimasi yang digunakan dalam machine learning untuk menemukan nilai optimal dari parameter model. Algoritma ini bekerja dengan menghitung gradien (turunan parsial) dari fungsi biaya (cost function) pada setiap data pelatihan secara acak (stochastic) dan mengupdate parameter model secara iteratif berdasarkan gradien yang dihitung tersebut.</p>
+</div>
+<div class="section" id="id1">
+<h3>Rumus<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Model<br>
 <span class="math notranslate nohighlight">\(y = w_0 + w_1x\)</span><br></p></li>
 <li><p>Data Training<br>
-<span class="math notranslate nohighlight">\(w_j = w_j - \lambda(F(x^i)-y^i)x^i_j\)</span><br></p></li>
+<span class="math notranslate nohighlight">\(w_j = w_j - \eta(f(x^i)-y^i)x^i_j\)</span><br></p></li>
 </ul>
 <p>Keterangan :</p>
 <ul class="simple">
@@ -471,7 +490,7 @@ w0 [4.15 2.65 2.65 3.4  1.15]
 <li><p><span class="math notranslate nohighlight">\(y^i\)</span> = target data ke …</p></li>
 <li><p><span class="math notranslate nohighlight">\(i\)</span> = data ke…</p></li>
 <li><p><span class="math notranslate nohighlight">\(f(x^i)\)</span> = prediksi data ke…</p></li>
-<li><p><span class="math notranslate nohighlight">\(\lambda\)</span> = learning rate</p></li>
+<li><p><span class="math notranslate nohighlight">\(\eta\)</span> = learning rate</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -629,7 +648,11 @@ w0 [4.15 2.65 2.65 3.4  1.15]
 </div>
 </div>
 </div>
-<p>##Offline Learning</p>
+<p>##Offline Learning
+teknik machine learning yang melibatkan pelatihan model pada dataset yang sudah dikumpulkan sebelumnya dan diproses secara offline.</p>
+</div>
+<div class="section" id="perhitungan-offline-learning">
+<h3>Perhitungan Offline Learning<a class="headerlink" href="#perhitungan-offline-learning" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinearRegression</span><span class="p">:</span>
@@ -673,6 +696,9 @@ w0 [4.15 2.65 2.65 3.4  1.15]
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -700,7 +726,10 @@ w0 [4.15 2.65 2.65 3.4  1.15]
               
               
                 <footer class="bd-footer-article">
-                  <!-- Previous / next buttons -->
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Matriks.html"
@@ -708,7 +737,7 @@ w0 [4.15 2.65 2.65 3.4  1.15]
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Matriks Dasar</p>
+        <p class="prev-next-title">Materi 1 : Matriks Dasar</p>
       </div>
     </a>
     <a class="right-next"
@@ -716,11 +745,14 @@ w0 [4.15 2.65 2.65 3.4  1.15]
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Contoh Soal Polynominal Regression</p>
+        <p class="prev-next-title">Materi 3 : Linear Regression (Multivariate)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
+</div></div>
+  
 </div>
+
                 </footer>
               
             </div>
@@ -734,9 +766,15 @@ w0 [4.15 2.65 2.65 3.4  1.15]
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-data-fitur-dan-target">Membuat Data Fitur dan target</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-direct-matriks">Perhitungan Direct Matriks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-offline-learning">Perhitungan Offline Learning</a></li>
 </ul>
-
+</li>
+</ul>
   </nav></div>
 
 </div></div>
@@ -744,7 +782,7 @@ w0 [4.15 2.65 2.65 3.4  1.15]
             
           </div>
           <footer class="bd-footer-content">
-            <div class="bd-footer-content__inner">
+            
 <div class="bd-footer-content__inner container">
   
   <div class="footer-item">
@@ -774,7 +812,7 @@ By Wahyu Aril Saputra
     
   </div>
   
-</div></div>
+</div>
           </footer>
         
 
@@ -783,8 +821,8 @@ By Wahyu Aril Saputra
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
   <footer class="bd-footer">
   </footer>
