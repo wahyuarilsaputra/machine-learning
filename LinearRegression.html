@@ -357,9 +357,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-data-fitur-dan-target">Membuat Data Fitur dan target</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-direct-matriks">Rumus Direct Matriks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah">Langkah</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-direct-matriks">Perhitungan Direct Matriks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-offline-learning">Perhitungan Offline Learning</a></li>
 </ul>
 </li>
@@ -376,6 +377,7 @@ document.write(`
                   
   <div class="tex2jax_ignore mathjax_ignore section" id="materi-2-linear-regression">
 <h1>Materi 2 : Linear Regression<a class="headerlink" href="#materi-2-linear-regression" title="Permalink to this heading">#</a></h1>
+<p>Regression adalah permasalahan yang outputnya berupa nilai real value</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -398,10 +400,10 @@ document.write(`
 </div>
 <p>##Direct Matriks
 matriks yang digunakan untuk merepresentasikan hubungan antara input dan output pada model yang dilatih dengan data yang diberikan.</p>
-<div class="section" id="rumus">
-<h3>Rumus<a class="headerlink" href="#rumus" title="Permalink to this heading">#</a></h3>
+<div class="section" id="rumus-direct-matriks">
+<h3>Rumus Direct Matriks<a class="headerlink" href="#rumus-direct-matriks" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Rumus Direct Matriks<br>
+<li><p>Model<br>
 <span class="math notranslate nohighlight">\(y = w_0 + w_1x\)</span><br></p></li>
 <li><p>Rumus W1<br>
 <span class="math notranslate nohighlight">\(w1 = cov(x,y)/var(x)\)</span><br></p></li>
@@ -419,6 +421,15 @@ matriks yang digunakan untuk merepresentasikan hubungan antara input dan output 
 <li><p><span class="math notranslate nohighlight">\(\overline{y}\)</span> = Mean Target</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_0\)</span> = Intercept/Bias</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_1\)</span> = Koefisien</p></li>
+</ul>
+</div>
+<div class="section" id="langkah">
+<h3>Langkah<a class="headerlink" href="#langkah" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Hitung Mean Fitur dan terget</p></li>
+<li><p>Hitung Cov dan Var</p></li>
+<li><p>Masukan hasil ke w0 dan w1</p></li>
+<li><p>Masukan hasil w0 dan w1 ke model</p></li>
 </ul>
 </div>
 <div class="section" id="perhitungan-direct-matriks">
@@ -476,8 +487,8 @@ w0 [4.15 2.65 2.65 3.4  1.15]
 <p>##Stochastic Gradient Descent (Perulangan)
 algoritma optimasi yang digunakan dalam machine learning untuk menemukan nilai optimal dari parameter model. Algoritma ini bekerja dengan menghitung gradien (turunan parsial) dari fungsi biaya (cost function) pada setiap data pelatihan secara acak (stochastic) dan mengupdate parameter model secara iteratif berdasarkan gradien yang dihitung tersebut.</p>
 </div>
-<div class="section" id="id1">
-<h3>Rumus<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<div class="section" id="rumus">
+<h3>Rumus<a class="headerlink" href="#rumus" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Model<br>
 <span class="math notranslate nohighlight">\(y = w_0 + w_1x\)</span><br></p></li>
@@ -768,9 +779,10 @@ teknik machine learning yang melibatkan pelatihan model pada dataset yang sudah 
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-data-fitur-dan-target">Membuat Data Fitur dan target</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-direct-matriks">Rumus Direct Matriks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah">Langkah</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-direct-matriks">Perhitungan Direct Matriks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Rumus</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">Rumus</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-offline-learning">Perhitungan Offline Learning</a></li>
 </ul>
 </li>

@@ -396,11 +396,11 @@ document.write(`
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">):</span>
       <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-        <span class="n">d_w</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">))</span>
-        <span class="n">d_b</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">))</span>
+        <span class="c1">#delta(error) w</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">d_w</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">d_b</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
 
   <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
@@ -429,7 +429,7 @@ document.write(`
 
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># y_pred = model.predict(X)</span>
 </pre></div>
 </div>
 </div>
@@ -448,7 +448,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2919.116707637786
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-4-c8dd1ff36d75&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;y_pred&#39; is not defined
 </pre></div>
 </div>
 </div>
@@ -472,7 +478,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/83c522cd001c829d6d904c69a89dd7cd8461492ce7de39bb85f6bde265008769.png" src="_images/83c522cd001c829d6d904c69a89dd7cd8461492ce7de39bb85f6bde265008769.png" />
+<img alt="_images/5a37c07a816bc8112f4fefcc3470f175b2a07761eb25a06da731cee15d87e091.png" src="_images/5a37c07a816bc8112f4fefcc3470f175b2a07761eb25a06da731cee15d87e091.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -484,7 +490,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0c3eb0405b4b27d894e406f8242c8b5e07405f44a2e8fa715803f68d89e11cbd.png" src="_images/0c3eb0405b4b27d894e406f8242c8b5e07405f44a2e8fa715803f68d89e11cbd.png" />
+<img alt="_images/ad74d7118f3594918e8db69f9c03fea74117880d46a932cb8374e67482e3ba62.png" src="_images/ad74d7118f3594918e8db69f9c03fea74117880d46a932cb8374e67482e3ba62.png" />
 </div>
 </div>
 </div>
@@ -528,7 +534,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/57a6328fa4fb9610965b467bbc6ad4cdf14dafb3bf74be866a27cb563830e284.png" src="_images/57a6328fa4fb9610965b467bbc6ad4cdf14dafb3bf74be866a27cb563830e284.png" />
+<img alt="_images/d6bf058f49cdb8bb7fbbb2d092a0553014f705f3e51daeb8e396d5375bb5e133.png" src="_images/d6bf058f49cdb8bb7fbbb2d092a0553014f705f3e51daeb8e396d5375bb5e133.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -540,7 +546,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/04fb8cb6fac19f1d711253c427e0b7948d5d8847bb215bd5a4e5ab38e4204da4.png" src="_images/04fb8cb6fac19f1d711253c427e0b7948d5d8847bb215bd5a4e5ab38e4204da4.png" />
+<img alt="_images/3c65b0d1ab6c6cd679bc6440ae21c741d291069e97d826d0254bd8bec02256aa.png" src="_images/3c65b0d1ab6c6cd679bc6440ae21c741d291069e97d826d0254bd8bec02256aa.png" />
 </div>
 </div>
 </div>
