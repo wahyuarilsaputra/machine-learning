@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Materi 4 : Confusion Matriks &#8212; 20-055 Machine Learning</title>
   
   
@@ -207,6 +208,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/ConfusionMatriks.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -215,7 +247,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -232,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FConfusionMatriks.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FConfusionMatriks.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +399,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="materi-4-confusion-matriks">
+  <section class="tex2jax_ignore mathjax_ignore" id="materi-4-confusion-matriks">
 <h1>Materi 4 : Confusion Matriks<a class="headerlink" href="#materi-4-confusion-matriks" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -383,7 +415,7 @@ document.write(`
 </div>
 </div>
 <p>##Confusion Matrix Binnarry Class</p>
-<div class="section" id="matriks-binnary-class">
+<section id="matriks-binnary-class">
 <h2>Matriks Binnary class<a class="headerlink" href="#matriks-binnary-class" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -409,8 +441,8 @@ document.write(`
 <img alt="_images/5a728b54875f9c4d54abd7e5bea0d58922933fedfb484db87a089dec0dfcf740.png" src="_images/5a728b54875f9c4d54abd7e5bea0d58922933fedfb484db87a089dec0dfcf740.png" />
 </div>
 </div>
-</div>
-<div class="section" id="precision-dan-recall">
+</section>
+<section id="precision-dan-recall">
 <h2>Precision dan Recall<a class="headerlink" href="#precision-dan-recall" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Precision (Jumlah dari prediksi yang benar)<br>
@@ -443,8 +475,8 @@ TP/TP+FN</p></li>
 <p>##Confusion Matrix Multiclass</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
-<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predict</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
@@ -458,14 +490,14 @@ TP/TP+FN</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[7 4]
-  [3 1]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[[ 6  2]
+  [ 2  5]]
 
- [[7 3]
-  [3 2]]
+ [[ 9  1]
+  [ 2  3]]
 
- [[8 1]
-  [2 4]]]
+ [[10  2]
+  [ 1  2]]]
 </pre></div>
 </div>
 </div>
@@ -481,10 +513,10 @@ TP/TP+FN</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7582b5e520&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x786b555d0d30&gt;
 </pre></div>
 </div>
-<img alt="_images/1fe8f1343d6ec53087031023f953dfed963c741a9525a328e982e2575f2d1ab4.png" src="_images/1fe8f1343d6ec53087031023f953dfed963c741a9525a328e982e2575f2d1ab4.png" />
+<img alt="_images/d37727a2cb5c959b992a1f8aab08a7783a4a51737e6f84489657a89fb918b47b.png" src="_images/d37727a2cb5c959b992a1f8aab08a7783a4a51737e6f84489657a89fb918b47b.png" />
 </div>
 </div>
 <p>###Matriks Keseluruhan</p>
@@ -496,9 +528,9 @@ TP/TP+FN</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1 2 1]
- [3 2 0]
- [1 1 4]]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[5 1 1]
+ [1 3 1]
+ [1 0 2]]
 </pre></div>
 </div>
 </div>
@@ -514,10 +546,10 @@ TP/TP+FN</p></li>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x7f7582a96760&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.colorbar.Colorbar at 0x786b55477070&gt;
 </pre></div>
 </div>
-<img alt="_images/be9ffc8a2657dae0bbdbfdb6ccf4d5c4e75433f793040f4de50dd81fd24cf806.png" src="_images/be9ffc8a2657dae0bbdbfdb6ccf4d5c4e75433f793040f4de50dd81fd24cf806.png" />
+<img alt="_images/1d30bbe9c5e718a64a9651b99bdc1d9c05e664d10d641cde04dd258236941e31.png" src="_images/1d30bbe9c5e718a64a9651b99bdc1d9c05e664d10d641cde04dd258236941e31.png" />
 </div>
 </div>
 <p>###Precision dan Recall</p>
@@ -533,8 +565,8 @@ Menentukan precision dan recall multiclass</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>precision = [0.2 0.4 0.8]
-recall = [0.25       0.4        0.66666667]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>precision = [0.71428571 0.75       0.5       ]
+recall = [0.71428571 0.6        0.66666667]
 </pre></div>
 </div>
 </div>
@@ -551,14 +583,14 @@ Menentukan rata rata precision dan recall</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>precision = 0.46666666666666673
-recall = 0.4388888888888889
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>precision = 0.6547619047619048
+recall = 0.6603174603174603
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

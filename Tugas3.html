@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Tugas 3 : Perceptron &#8212; 20-055 Machine Learning</title>
   
   
@@ -205,6 +206,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/Tugas3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -213,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -230,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTugas3.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FTugas3.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,7 +384,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivasi-stepwise">Aktivasi StepWise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivasi-sigmoid">Aktivasi Sigmoid</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-nilai-dengan-algoritma-and-not">Menentukan nilai dengan algoritma and Not</a></li>
 </ul>
@@ -366,79 +397,22 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="tugas-3-perceptron">
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-3-perceptron">
 <h1>Tugas 3 : Perceptron<a class="headerlink" href="#tugas-3-perceptron" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="aktivasi-stepwise">
-<h2>Aktivasi StepWise<a class="headerlink" href="#aktivasi-stepwise" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PerceptronStepWise</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="n">n_data</span><span class="p">,</span> <span class="n">n_fitur</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_fitur</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">):</span>
-            <span class="c1"># print(&#39;epoch-&#39;, iter)</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_data</span><span class="p">):</span>
-                <span class="n">netIn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-                <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aktivasiSigmoid</span><span class="p">(</span><span class="n">netIn</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">out</span> <span class="o">==</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                  <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span>
-                  <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-                <span class="k">elif</span> <span class="n">out</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-                  <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                  <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span>
-                <span class="k">else</span><span class="p">:</span>
-                  <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span><span class="o">*</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                  <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span>
-            <span class="c1"># print(self.bias)</span>
-            <span class="c1"># print(self.bobot)</span>
-
-    <span class="k">def</span> <span class="nf">aktivasi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">netIn</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">netIn</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">:</span>
-          <span class="k">return</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-          <span class="k">return</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">aktivasiSigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">netIn</span><span class="p">):</span>
-        <span class="n">sig</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">netIn</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">sig</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
-          <span class="k">return</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-          <span class="k">return</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">:</span>
-          <span class="n">netIn</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bobot</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-          <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">aktivasiSigmoid</span><span class="p">(</span><span class="n">netIn</span><span class="p">)</span>
-          <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">output</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="aktivasi-sigmoid">
+<section id="aktivasi-sigmoid">
 <h2>Aktivasi Sigmoid<a class="headerlink" href="#aktivasi-sigmoid" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PerceptronSigmoid</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.02</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">learning_rate</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">epoch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="kc">None</span>
@@ -463,6 +437,7 @@ document.write(`
             <span class="c1"># print(self.bias)</span>
             <span class="c1"># print(self.bobot)</span>
           
+    <span class="c1">#stepwise          </span>
     <span class="k">def</span> <span class="nf">aktivasi</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">netIn</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">netIn</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">:</span>
           <span class="k">return</span> <span class="mi">1</span>
@@ -490,23 +465,13 @@ document.write(`
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]])</span>
-<span class="n">y_and</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y_Or</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">y_notAnd</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">y_notOr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">Xss</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y_and</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="n">model_StepStepWise</span> <span class="o">=</span> <span class="n">PerceptronStepWise</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">model_Sigmoid</span> <span class="o">=</span> <span class="n">PerceptronSigmoid</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">epoch</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="n">model_StepStepWise</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y_Or</span><span class="p">)</span>
-<span class="n">model_Sigmoid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y_Or</span><span class="p">)</span>
-
-<span class="n">y_predStepWise</span> <span class="o">=</span> <span class="n">model_StepStepWise</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;StepWise&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bobot StepWise = &#39;</span><span class="p">,</span> <span class="n">model_StepStepWise</span><span class="o">.</span><span class="n">bobot</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Bias StepWise = &#39;</span><span class="p">,</span> <span class="n">model_StepStepWise</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Prediksi Ste Wise = &#39;</span><span class="p">,</span> <span class="n">y_predStepWise</span><span class="p">)</span>
+<span class="n">model_Sigmoid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y_and</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Sigmoid&#39;</span><span class="p">)</span>
@@ -518,21 +483,16 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StepWise
-Bobot StepWise =  [0.01 0.01]
-Bias StepWise =  -0.01
-Prediksi Ste Wise =  [1, 1, 1, 0]
-
-Sigmoid
-Bobot Sigmoid =  [0.01 0.01]
-Bias Sigmoid =  -0.01
-Prediksi Sigmoid =  [1, 1, 1, 0]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sigmoid
+Bobot Sigmoid =  [0.02 0.01]
+Bias Sigmoid =  -0.03
+Prediksi Sigmoid =  [0, 0, 0, 1]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="menentukan-nilai-dengan-algoritma-and-not">
+</section>
+<section id="menentukan-nilai-dengan-algoritma-and-not">
 <h2>Menentukan nilai dengan algoritma and Not<a class="headerlink" href="#menentukan-nilai-dengan-algoritma-and-not" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,8 +534,8 @@ Prediksi =  [0, 1, 1, 0]
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -626,7 +586,6 @@ Prediksi =  [0, 1, 1, 0]
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivasi-stepwise">Aktivasi StepWise</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aktivasi-sigmoid">Aktivasi Sigmoid</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-nilai-dengan-algoritma-and-not">Menentukan nilai dengan algoritma and Not</a></li>
 </ul>

@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Materi 5 : Logistik Regression &#8212; 20-055 Machine Learning</title>
   
   
@@ -208,6 +209,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/LogisticRegression.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -216,7 +248,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -233,7 +265,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLogisticRegression.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FLogisticRegression.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -369,17 +401,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="materi-5-logistik-regression">
+  <section class="tex2jax_ignore mathjax_ignore" id="materi-5-logistik-regression">
 <h1>Materi 5 : Logistik Regression<a class="headerlink" href="#materi-5-logistik-regression" title="Permalink to this heading">#</a></h1>
-<div class="section" id="klasifikasi">
+<section id="klasifikasi">
 <h2>Klasifikasi<a class="headerlink" href="#klasifikasi" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Binnary clasification (2 class saja)</p></li>
 <li><p>Multi Clasification (banyak class)</p></li>
 <li><p>Multi label classification (1 data punya banyak label)</p></li>
 </ul>
-</div>
-<div class="section" id="logistik-regression-binnary-classification">
+</section>
+<section id="logistik-regression-binnary-classification">
 <h2>Logistik Regression (Binnary Classification)<a class="headerlink" href="#logistik-regression-binnary-classification" title="Permalink to this heading">#</a></h2>
 <p>Output = <span class="math notranslate nohighlight">\(0\leq y \leq1\)</span><br>
 <span class="math notranslate nohighlight">\(y = f(x)=1/1-e^{-x}\)</span></p>
@@ -388,8 +420,8 @@ document.write(`
 <li><p><span class="math notranslate nohighlight">\(e\)</span> = eksponen (2,718)</p></li>
 <li><p><span class="math notranslate nohighlight">\(x\)</span> = fitur</p></li>
 </ul>
-</div>
-<div class="section" id="logistik-regression-multi-classification">
+</section>
+<section id="logistik-regression-multi-classification">
 <h2>Logistik Regression (Multi Classification)<a class="headerlink" href="#logistik-regression-multi-classification" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Rumus<br>
@@ -434,7 +466,7 @@ document.write(`
 prediction =  [0]
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.9/dist-packages/sklearn/utils/validation.py:1143: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/usr/local/lib/python3.10/dist-packages/sklearn/utils/validation.py:1143: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
   y = column_or_1d(y, warn=True)
 </pre></div>
 </div>
@@ -463,8 +495,8 @@ prediction =  [0]
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

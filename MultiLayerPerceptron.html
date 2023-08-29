@@ -1,0 +1,772 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Menggunakan Dataset Iris &#8212; 20-055 Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MultiLayerPerceptron';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/robitt.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="_static/robitt.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Matriks.html">Materi 1 : Matriks Dasar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearRegression.html">Materi 2 : Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LinearRegression2.html">Materi 3 : Linear Regression (Multivariate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ConfusionMatriks.html">Materi 4 : Confusion Matriks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LogisticRegression.html">Materi 5 : Logistik Regression</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/MultiLayerPerceptron.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FMultiLayerPerceptron.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/MultiLayerPerceptron.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Menggunakan Dataset Iris</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MLP</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">,</span> <span class="n">output_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_size</span> <span class="o">=</span> <span class="n">input_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_size</span> <span class="o">=</span> <span class="n">output_size</span>
+        
+        <span class="c1"># Initialize weights randomly for the hidden layer and output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_size</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">sigmoid_derivative</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">feedforward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="c1"># Calculate hidden layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias1</span><span class="p">)</span>
+
+        <span class="c1"># Calculate output layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_layer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights2</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias2</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span>
+
+    <span class="k">def</span> <span class="nf">backpropagation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+        <span class="c1"># Feed forward</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">feedforward</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        
+        <span class="c1"># Menghitung error pada output layer</span>
+        <span class="n">output_error</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">output</span>
+        
+        <span class="c1"># Menghitung gradien pada output layer</span>
+        <span class="n">output_gradient</span> <span class="o">=</span> <span class="n">output_error</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid_derivative</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        
+        <span class="c1"># Menghitung error pada layer tersembunyi</span>
+        <span class="n">hidden_error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">output_gradient</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights2</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        
+        <span class="c1"># Menghitung gradien pada layer tersembunyi</span>
+        <span class="n">hidden_gradient</span> <span class="o">=</span> <span class="n">hidden_error</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sigmoid_derivative</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_layer</span><span class="p">)</span>
+        
+        <span class="c1"># Memperbarui bobot pada layer tersembunyi dan output</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights2</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_layer</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">output_gradient</span><span class="p">)</span> <span class="o">*</span> <span class="n">learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weights1</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">hidden_gradient</span><span class="p">)</span> <span class="o">*</span> <span class="n">learning_rate</span>
+
+    <span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">num_epochs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+            <span class="c1"># Forward pass</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feedforward</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+            <span class="c1"># Backward pass</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backpropagation</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+
+            <span class="c1"># Calculate loss</span>
+            <span class="n">loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">output</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">epoch</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Epoch </span><span class="si">%d</span><span class="s2"> Loss: </span><span class="si">%.4f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">epoch</span><span class="p">,</span> <span class="n">loss</span><span class="p">))</span>
+
+    <span class="c1"># def trainSGD(self, X, y, learning_rate, epochs):</span>
+    <span class="c1">#     for epoch in range(epochs):</span>
+    <span class="c1">#         for i in range(len(X)):</span>
+    <span class="c1">#             x_i = X[i]</span>
+    <span class="c1">#             y_i = y[i]</span>
+    <span class="c1">#             mlp.backpropagation(x_i.reshape(1, -1), y_i.reshape(1, -1), learning_rate)</span>
+            
+    <span class="c1">#         # Cetak bobot setelah setiap epoch</span>
+    <span class="c1">#         print(f&quot;Epoch {epoch+1}:&quot;)</span>
+    <span class="c1">#         mlp.show_weights()</span>
+    <span class="c1">#         print(&quot;--------------------&quot;)</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feedforward</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">show_architecture</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MLP Architecture:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input layer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">input_size</span><span class="si">}</span><span class="s2"> neurons&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hidden layer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="si">}</span><span class="s2"> neurons&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output layer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">output_size</span><span class="si">}</span><span class="s2"> neurons&quot;</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">show_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">epoch</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch ke: </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bobot MLP:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;W1:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;W2:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># # 2 input 4 hidden dan 1 output</span>
+<span class="c1"># mlp = MLP(2, 4, 1)</span>
+<span class="c1"># X = np.array([[0, 1]])  # Input</span>
+<span class="c1"># y = np.array([[1]])     # Target output</span>
+<span class="c1"># output = 1     # Learning rate</span>
+<span class="c1"># # output = mlp.feedforward(X)</span>
+<span class="c1"># mlp.backpropagation(X, y,output)</span>
+<span class="c1"># # print(&quot;Output:&quot;, output)</span>
+<span class="c1"># print(&quot;Updated weights:&quot;)</span>
+<span class="c1"># print(&quot;W1:&quot;, mlp.weights1)</span>
+<span class="c1"># print(&quot;W2:&quot;, mlp.weights2)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="menggunakan-dataset-iris">
+<h1>Menggunakan Dataset Iris<a class="headerlink" href="#menggunakan-dataset-iris" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1"># Konversi label menjadi one-hot encoding</span>
+<span class="n">num_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">y_train_encoded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">num_classes</span><span class="p">)[</span><span class="n">y_train</span><span class="p">]</span>
+
+<span class="c1"># Inisialisasi dan melatih MLP</span>
+<span class="n">mlp</span> <span class="o">=</span> <span class="n">MLP</span><span class="p">(</span><span class="n">input_size</span><span class="o">=</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hidden_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">output_size</span><span class="o">=</span><span class="n">num_classes</span><span class="p">)</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="c1"># mlp.trainSGD(mlp,X_train, y_train_encoded, learning_rate, epochs)</span>
+
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="n">mlp</span><span class="o">.</span><span class="n">backpropagation</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train_encoded</span><span class="p">,</span> <span class="n">learning_rate</span><span class="p">)</span>
+    <span class="n">mlp</span><span class="o">.</span><span class="n">show_weights</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--------------------&quot;</span><span class="p">)</span>
+
+<span class="c1"># Evaluasi performa model pada data uji</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">mlp</span><span class="o">.</span><span class="n">feedforward</span><span class="p">(</span><span class="n">X_test</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_pred</span> <span class="o">==</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch ke: 1
+Bobot MLP:
+W1: [[ 0.77676932  0.94315845  1.84598084  0.1008618 ]
+ [ 0.8324963   0.82230734 -0.92363348  0.28334263]
+ [ 0.10534426  0.42626726 -0.19201774 -0.30796102]
+ [-0.92936446  0.76359547 -1.107777   -0.32337863]]
+W2: [[ 0.64027959  1.14748719 -1.07828492]
+ [-1.96327387  0.43398164 -0.65949172]
+ [ 0.24105372 -1.0535681  -1.01587191]
+ [ 0.31152462 -0.74780256 -0.50265286]]
+--------------------
+Epoch ke: 2
+Bobot MLP:
+W1: [[ 0.67252943  1.00808254  1.77521036  0.03345937]
+ [ 0.82567959  0.70106046 -0.84911363  0.34921168]
+ [-0.00428519  0.53112328 -0.2986082  -0.39650152]
+ [-1.05085419  0.85703752 -1.21361265 -0.40586971]]
+W2: [[ 0.83667109  1.23339491 -0.98530709]
+ [-1.94613604  0.55824241 -0.42995851]
+ [ 0.28855425 -0.87756026 -0.86822586]
+ [ 0.51669259 -0.64605116 -0.43476103]]
+--------------------
+Epoch ke: 3
+Bobot MLP:
+W1: [[ 0.56589051  1.0621929   1.70018172 -0.0341188 ]
+ [ 0.81303761  0.58464911 -0.77495444  0.41254906]
+ [-0.11282789  0.62547389 -0.40470197 -0.48491841]
+ [-1.16938008  0.94041599 -1.3168896  -0.48847412]]
+W2: [[ 1.05880594  1.3136596  -0.91716984]
+ [-1.948751    0.69162598 -0.18939724]
+ [ 0.36521375 -0.70919709 -0.73977002]
+ [ 0.74480288 -0.55200646 -0.38553406]]
+--------------------
+Epoch ke: 4
+Bobot MLP:
+W1: [[ 0.46375916  1.10711892  1.62055207 -0.10020603]
+ [ 0.79366232  0.47432407 -0.70038423  0.47191918]
+ [-0.21441155  0.71021429 -0.51153694 -0.57122467]
+ [-1.27947404  1.01457797 -1.41916605 -0.56934767]]
+W2: [[ 1.30303807  1.38884304 -0.87229964]
+ [-1.96602248  0.83316412  0.05974654]
+ [ 0.47433844 -0.54907464 -0.63142448]
+ [ 0.99198622 -0.46512962 -0.35270057]]
+--------------------
+Epoch ke: 5
+Bobot MLP:
+W1: [[ 0.3707653   1.14455383  1.53623818 -0.16329184]
+ [ 0.76781891  0.36936001 -0.62518035  0.52638487]
+ [-0.30540677  0.78707903 -0.61990641 -0.65364866]
+ [-1.37808887  1.08117569 -1.5215817  -0.64681062]]
+W2: [[ 1.56440183  1.45982136 -0.8468231 ]
+ [-1.99388554  0.98196377  0.31552677]
+ [ 0.61781731 -0.39770578 -0.54392066]
+ [ 1.25427073 -0.38473722 -0.33358234]]
+--------------------
+Epoch ke: 6
+Bobot MLP:
+W1: [[ 0.28817268  1.17580676  1.44850388 -0.2224275 ]
+ [ 0.73667376  0.26797377 -0.5505224   0.57567036]
+ [-0.38515745  0.8579143  -0.728876   -0.73111965]
+ [-1.46508056  1.14193953 -1.62359725 -0.71982856]]
+W2: [[ 1.83817388  1.52758436 -0.83618009]
+ [-2.02939435  1.1373148   0.57648127]
+ [ 0.79541839 -0.25541618 -0.47756358]
+ [ 1.5281076  -0.31008203 -0.32551945]]
+--------------------
+Epoch ke: 7
+Bobot MLP:
+W1: [[ 0.21517248  1.20174631  1.36045738 -0.27724377]
+ [ 0.70151952  0.1681507  -0.47912399  0.61999264]
+ [-0.45473513  0.92428382 -0.83537407 -0.80326318]
+ [-1.5418654   1.19830817 -1.72263415 -0.78802059]]
+W2: [[ 2.12069597  1.59305521 -0.83641598]
+ [-2.07051377  1.29871359  0.84153584]
+ [ 1.00418723 -0.12218308 -0.43171072]
+ [ 1.81063427 -0.24043527 -0.32617714]]
+--------------------
+Epoch ke: 8
+Bobot MLP:
+W1: [[ 0.15022466  1.22289587  1.2760008  -0.32777796]
+ [ 0.66333435  0.0680909  -0.41403984  0.65982213]
+ [-0.51575423  0.98736148 -0.93556795 -0.87017777]
+ [-1.6102484   1.25134473 -1.81541653 -0.85145336]]
+W2: [[ 2.40939399  1.65701657 -0.84456615]
+ [-2.11585526  1.46583961  1.10989551]
+ [ 1.23878096  0.00246425 -0.40434938]
+ [ 2.09968291 -0.17513743 -0.33365987]]
+--------------------
+Epoch ke: 9
+Bobot MLP:
+W1: [[ 0.09175992  1.2395488   1.19801452 -0.37428989]
+ [ 0.62274633 -0.03364419 -0.35719566  0.69570805]
+ [-0.5697862   1.04796879 -1.02686647 -0.93221136]
+ [-1.67189012  1.30178544 -1.89983013 -0.91043154]]
+W2: [[ 2.70251191  1.72010924 -0.85854204]
+ [-2.16446386  1.63851681  1.38095617]
+ [ 1.49297774  0.11936344 -0.39234652]
+ [ 2.39366314 -0.11361743 -0.34649348]]
+--------------------
+Epoch ke: 10
+Bobot MLP:
+W1: [[ 0.03843886  1.25186268  1.12758676 -0.41713302]
+ [ 0.5801452  -0.13812536 -0.30902725  0.72818415]
+ [-0.61816218  1.10665323 -1.10859684 -0.98981015]
+ [-1.72815625  1.35012004 -1.9754882  -0.9653553 ]]
+W2: [[ 2.99884944  1.7828559  -0.87689786]
+ [-2.21567195  1.81667599  1.65424242]
+ [ 1.7612537   0.22951601 -0.39228525]
+ [ 2.69142044 -0.0553919  -0.36355352]]
+--------------------
+Accuracy: 0.5666666666666667
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">show_architecture</span><span class="p">(</span><span class="n">mlp</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;MLP Architecture:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Input layer: </span><span class="si">{</span><span class="n">mlp</span><span class="o">.</span><span class="n">input_size</span><span class="si">}</span><span class="s2"> neurons&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hidden layer: </span><span class="si">{</span><span class="n">mlp</span><span class="o">.</span><span class="n">hidden_size</span><span class="si">}</span><span class="s2"> neurons&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Output layer: </span><span class="si">{</span><span class="n">mlp</span><span class="o">.</span><span class="n">output_size</span><span class="si">}</span><span class="s2"> neurons&quot;</span><span class="p">)</span>
+<span class="n">show_architecture</span><span class="p">(</span><span class="n">mlp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MLP Architecture:
+Input layer: 4 neurons
+Hidden layer: 4 neurons
+Output layer: 3 neurons
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Wahyu Aril Saputra
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

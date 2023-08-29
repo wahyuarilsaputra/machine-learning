@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Buat Constructor dan Inisialiasi Model &#8212; 20-055 Machine Learning</title>
   
   
@@ -205,6 +206,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/Tugas1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -213,7 +245,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -230,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FTugas1.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FTugas1.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -352,14 +384,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Buat Constructor dan Inisialiasi Model</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-mse-mean-squared-error">Menentukan Mse (Mean Squared Error)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-fitur-dan-target-yang-ada">Menggunakan Fitur dan Target yang ada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-data-baru">Menggunakan Data baru</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-fitur-dari-expand-fitur">Menggunakan Fitur dari Expand Fitur</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -371,11 +398,12 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <p>#Tugas 1 : Linear Regression</p>
-<div class="section" id="buat-constructor-dan-inisialiasi-model">
+<section id="buat-constructor-dan-inisialiasi-model">
 <h1>Buat Constructor dan Inisialiasi Model<a class="headerlink" href="#buat-constructor-dan-inisialiasi-model" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </div>
@@ -396,11 +424,10 @@ document.write(`
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">):</span>
       <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">):</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
-        <span class="c1">#delta(error) w</span>
         <span class="n">error</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">y_pred</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span> <span class="o">*</span> <span class="n">X</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">learning_rate</span> <span class="o">*</span> <span class="n">error</span>
 
   <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">):</span>
     <span class="n">y_pred</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span>
@@ -409,10 +436,16 @@ document.write(`
   <span class="k">def</span> <span class="nf">expand_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">X</span><span class="p">,</span><span class="n">degree</span><span class="p">):</span>
     <span class="n">X_expand</span> <span class="o">=</span> <span class="p">[</span><span class="n">X</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">degree</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-      <span class="c1"># X_expand = np.hstack((X_expand,np.power(X,a)))</span>
       <span class="n">X_expand</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
-    <span class="c1"># return X_expand</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span><span class="n">X_expand</span><span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">calculate_r_square_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+    <span class="n">n_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred</span>
+    <span class="n">ss_residual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">residual</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">ss_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_test</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">r_square</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">ss_residual</span> <span class="o">/</span> <span class="n">ss_total</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r_square</span>
 </pre></div>
 </div>
 </div>
@@ -424,49 +457,288 @@ document.write(`
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">diabetes</span><span class="o">.</span><span class="n">data</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">diabetes</span><span class="o">.</span><span class="n">target</span>
-
 <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
-<span class="c1"># y_pred = model.predict(X)</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="menentukan-mse-mean-squared-error">
-<h1>Menentukan Mse (Mean Squared Error)<a class="headerlink" href="#menentukan-mse-mean-squared-error" title="Permalink to this heading">#</a></h1>
-<div class="section" id="menggunakan-fitur-dan-target-yang-ada">
-<h2>Menggunakan Fitur dan Target yang ada<a class="headerlink" href="#menggunakan-fitur-dan-target-yang-ada" title="Permalink to this heading">#</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">NameError</span>Traceback (most recent call last)
-<span class="nn">&lt;ipython-input-4-c8dd1ff36d75&gt;</span> in <span class="ni">&lt;cell line: 2&gt;</span><span class="nt">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="nb">print</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;y_pred&#39; is not defined
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(442,)
 </pre></div>
 </div>
 </div>
 </div>
+<section id="menggunakan-data-baru">
+<h2>Menggunakan Data baru<a class="headerlink" href="#menggunakan-data-baru" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.10</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">X_new</span> <span class="o">=</span> <span class="n">X_new</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">y_new</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-55281ebf-9414-464d-8756-a406f1d7461f" class="colab-df-container">
+    <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.100000</td>
+      <td>-0.097980</td>
+      <td>-0.095960</td>
+      <td>-0.093939</td>
+      <td>-0.091919</td>
+      <td>-0.089899</td>
+      <td>-0.087879</td>
+      <td>-0.085859</td>
+      <td>-0.083838</td>
+      <td>-0.081818</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.079798</td>
+      <td>-0.077778</td>
+      <td>-0.075758</td>
+      <td>-0.073737</td>
+      <td>-0.071717</td>
+      <td>-0.069697</td>
+      <td>-0.067677</td>
+      <td>-0.065657</td>
+      <td>-0.063636</td>
+      <td>-0.061616</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.059596</td>
+      <td>-0.057576</td>
+      <td>-0.055556</td>
+      <td>-0.053535</td>
+      <td>-0.051515</td>
+      <td>-0.049495</td>
+      <td>-0.047475</td>
+      <td>-0.045455</td>
+      <td>-0.043434</td>
+      <td>-0.041414</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.039394</td>
+      <td>-0.037374</td>
+      <td>-0.035354</td>
+      <td>-0.033333</td>
+      <td>-0.031313</td>
+      <td>-0.029293</td>
+      <td>-0.027273</td>
+      <td>-0.025253</td>
+      <td>-0.023232</td>
+      <td>-0.021212</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.019192</td>
+      <td>-0.017172</td>
+      <td>-0.015152</td>
+      <td>-0.013131</td>
+      <td>-0.011111</td>
+      <td>-0.009091</td>
+      <td>-0.007071</td>
+      <td>-0.005051</td>
+      <td>-0.003030</td>
+      <td>-0.001010</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.001010</td>
+      <td>0.003030</td>
+      <td>0.005051</td>
+      <td>0.007071</td>
+      <td>0.009091</td>
+      <td>0.011111</td>
+      <td>0.013131</td>
+      <td>0.015152</td>
+      <td>0.017172</td>
+      <td>0.019192</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.021212</td>
+      <td>0.023232</td>
+      <td>0.025253</td>
+      <td>0.027273</td>
+      <td>0.029293</td>
+      <td>0.031313</td>
+      <td>0.033333</td>
+      <td>0.035354</td>
+      <td>0.037374</td>
+      <td>0.039394</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0.041414</td>
+      <td>0.043434</td>
+      <td>0.045455</td>
+      <td>0.047475</td>
+      <td>0.049495</td>
+      <td>0.051515</td>
+      <td>0.053535</td>
+      <td>0.055556</td>
+      <td>0.057576</td>
+      <td>0.059596</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0.061616</td>
+      <td>0.063636</td>
+      <td>0.065657</td>
+      <td>0.067677</td>
+      <td>0.069697</td>
+      <td>0.071717</td>
+      <td>0.073737</td>
+      <td>0.075758</td>
+      <td>0.077778</td>
+      <td>0.079798</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0.081818</td>
+      <td>0.083838</td>
+      <td>0.085859</td>
+      <td>0.087879</td>
+      <td>0.089899</td>
+      <td>0.091919</td>
+      <td>0.093939</td>
+      <td>0.095960</td>
+      <td>0.097980</td>
+      <td>0.100000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+    <div class="colab-df-buttons">
+      
+  <div class="colab-df-container">
+    <button class="colab-df-convert" onclick="convertToInteractive('df-55281ebf-9414-464d-8756-a406f1d7461f')"
+            title="Convert this dataframe to an interactive table."
+            style="display:none;">
+      
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960">
+    <path d="M120-120v-720h720v720H120Zm60-500h600v-160H180v160Zm220 220h160v-160H400v160Zm0 220h160v-160H400v160ZM180-400h160v-160H180v160Zm440 0h160v-160H620v160ZM180-180h160v-160H180v160Zm440 0h160v-160H620v160Z"/>
+  </svg>
+    </button>
+    
+  <style>
+    .colab-df-container {
+      display:flex;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    .colab-df-buttons div {
+      margin-bottom: 4px;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+    <script>
+      const buttonEl =
+        document.querySelector('#df-55281ebf-9414-464d-8756-a406f1d7461f button.colab-df-convert');
+      buttonEl.style.display =
+        google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+      async function convertToInteractive(key) {
+        const element = document.querySelector('#df-55281ebf-9414-464d-8756-a406f1d7461f');
+        const dataTable =
+          await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                    [key], {});
+        if (!dataTable) return;
+
+        const docLinkHtml = 'Like what you see? Visit the ' +
+          '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+          + ' to learn more about interactive tables.';
+        element.innerHTML = '';
+        dataTable['output_type'] = 'display_data';
+        await google.colab.output.renderOutput(dataTable, element);
+        const docLink = document.createElement('div');
+        docLink.innerHTML = docLinkHtml;
+        element.appendChild(docLink);
+      }
+    </script>
+  </div>
+  
+    </div>
+  </div>
+  </div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -478,23 +750,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5a37c07a816bc8112f4fefcc3470f175b2a07761eb25a06da731cee15d87e091.png" src="_images/5a37c07a816bc8112f4fefcc3470f175b2a07761eb25a06da731cee15d87e091.png" />
+<img alt="_images/6f51c860746efdda02007cdedb2fbb5f8cd89e753d129358f88668084deb5351.png" src="_images/6f51c860746efdda02007cdedb2fbb5f8cd89e753d129358f88668084deb5351.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">y_pred</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/ad74d7118f3594918e8db69f9c03fea74117880d46a932cb8374e67482e3ba62.png" src="_images/ad74d7118f3594918e8db69f9c03fea74117880d46a932cb8374e67482e3ba62.png" />
-</div>
-</div>
-</div>
-<div class="section" id="menggunakan-fitur-dari-expand-fitur">
+</section>
+<section id="menggunakan-fitur-dari-expand-fitur">
 <h2>Menggunakan Fitur dari Expand Fitur<a class="headerlink" href="#menggunakan-fitur-dari-expand-fitur" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -505,52 +765,36 @@ document.write(`
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_expand</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_expand</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">y_pred</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">r_square</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">calculate_r_square_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;R-Square Error:&quot;</span><span class="p">,</span> <span class="n">r_square</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3947.813632905561
-[808.22655409  23.83016222]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>R-Square Error: 0.2964081804377252
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_new2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
-<span class="n">X_new</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">expand_feature</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="n">y_new</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_new</span><span class="p">)</span>
-
+<span class="n">X_new2</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">expand_feature</span><span class="p">(</span><span class="n">X_new2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">y_new</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_new2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_new</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">y_new</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_new2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">y_new</span><span class="p">,</span><span class="s1">&#39;r-&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d6bf058f49cdb8bb7fbbb2d092a0553014f705f3e51daeb8e396d5375bb5e133.png" src="_images/d6bf058f49cdb8bb7fbbb2d092a0553014f705f3e51daeb8e396d5375bb5e133.png" />
+<img alt="_images/efac790dd15a75f14202cf2a68c0934c65e6d30cec3b6f2b9262e64c27ee76c2.png" src="_images/efac790dd15a75f14202cf2a68c0934c65e6d30cec3b6f2b9262e64c27ee76c2.png" />
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span><span class="n">y_pred</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/3c65b0d1ab6c6cd679bc6440ae21c741d291069e97d826d0254bd8bec02256aa.png" src="_images/3c65b0d1ab6c6cd679bc6440ae21c741d291069e97d826d0254bd8bec02256aa.png" />
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -601,14 +845,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Buat Constructor dan Inisialiasi Model</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-mse-mean-squared-error">Menentukan Mse (Mean Squared Error)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-fitur-dan-target-yang-ada">Menggunakan Fitur dan Target yang ada</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-data-baru">Menggunakan Data baru</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-fitur-dari-expand-fitur">Menggunakan Fitur dari Expand Fitur</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>

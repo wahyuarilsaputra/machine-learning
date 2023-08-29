@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Materi 2 : Linear Regression &#8212; 20-055 Machine Learning</title>
   
   
@@ -209,6 +210,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/LinearRegression.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -217,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -234,7 +266,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLinearRegression.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FLinearRegression.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -375,7 +407,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="materi-2-linear-regression">
+  <section class="tex2jax_ignore mathjax_ignore" id="materi-2-linear-regression">
 <h1>Materi 2 : Linear Regression<a class="headerlink" href="#materi-2-linear-regression" title="Permalink to this heading">#</a></h1>
 <p>Regression adalah permasalahan yang outputnya berupa nilai real value</p>
 <div class="cell docutils container">
@@ -387,7 +419,7 @@ document.write(`
 </div>
 </div>
 </div>
-<div class="section" id="membuat-data-fitur-dan-target">
+<section id="membuat-data-fitur-dan-target">
 <h2>Membuat Data Fitur dan target<a class="headerlink" href="#membuat-data-fitur-dan-target" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -400,7 +432,7 @@ document.write(`
 </div>
 <p>##Direct Matriks
 matriks yang digunakan untuk merepresentasikan hubungan antara input dan output pada model yang dilatih dengan data yang diberikan.</p>
-<div class="section" id="rumus-direct-matriks">
+<section id="rumus-direct-matriks">
 <h3>Rumus Direct Matriks<a class="headerlink" href="#rumus-direct-matriks" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Model<br>
@@ -422,8 +454,8 @@ matriks yang digunakan untuk merepresentasikan hubungan antara input dan output 
 <li><p><span class="math notranslate nohighlight">\(w_0\)</span> = Intercept/Bias</p></li>
 <li><p><span class="math notranslate nohighlight">\(w_1\)</span> = Koefisien</p></li>
 </ul>
-</div>
-<div class="section" id="langkah">
+</section>
+<section id="langkah">
 <h3>Langkah<a class="headerlink" href="#langkah" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Hitung Mean Fitur dan terget</p></li>
@@ -431,8 +463,8 @@ matriks yang digunakan untuk merepresentasikan hubungan antara input dan output 
 <li><p>Masukan hasil ke w0 dan w1</p></li>
 <li><p>Masukan hasil w0 dan w1 ke model</p></li>
 </ul>
-</div>
-<div class="section" id="perhitungan-direct-matriks">
+</section>
+<section id="perhitungan-direct-matriks">
 <h3>Perhitungan Direct Matriks<a class="headerlink" href="#perhitungan-direct-matriks" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -486,8 +518,8 @@ w0 [4.15 2.65 2.65 3.4  1.15]
 </div>
 <p>##Stochastic Gradient Descent (Perulangan)
 algoritma optimasi yang digunakan dalam machine learning untuk menemukan nilai optimal dari parameter model. Algoritma ini bekerja dengan menghitung gradien (turunan parsial) dari fungsi biaya (cost function) pada setiap data pelatihan secara acak (stochastic) dan mengupdate parameter model secara iteratif berdasarkan gradien yang dihitung tersebut.</p>
-</div>
-<div class="section" id="rumus">
+</section>
+<section id="rumus">
 <h3>Rumus<a class="headerlink" href="#rumus" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Model<br>
@@ -661,8 +693,8 @@ algoritma optimasi yang digunakan dalam machine learning untuk menemukan nilai o
 </div>
 <p>##Offline Learning
 teknik machine learning yang melibatkan pelatihan model pada dataset yang sudah dikumpulkan sebelumnya dan diproses secara offline.</p>
-</div>
-<div class="section" id="perhitungan-offline-learning">
+</section>
+<section id="perhitungan-offline-learning">
 <h3>Perhitungan Offline Learning<a class="headerlink" href="#perhitungan-offline-learning" title="Permalink to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -707,9 +739,9 @@ teknik machine learning yang melibatkan pelatihan model pada dataset yang sudah 
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {

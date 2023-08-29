@@ -7,7 +7,8 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
     <title>Materi 3 : Linear Regression (Multivariate) &#8212; 20-055 Machine Learning</title>
   
   
@@ -209,6 +210,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/wahyuarilsaputra/machine-learning/blob/gh-pages/_sources/LinearRegression2.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -217,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -234,7 +266,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FLinearRegression2.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/wahyuarilsaputra/machine-learning/issues/new?title=Issue%20on%20page%20%2FLinearRegression2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -368,7 +400,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="tex2jax_ignore mathjax_ignore section" id="materi-3-linear-regression-multivariate">
+  <section class="tex2jax_ignore mathjax_ignore" id="materi-3-linear-regression-multivariate">
 <h1>Materi 3 : Linear Regression (Multivariate)<a class="headerlink" href="#materi-3-linear-regression-multivariate" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -443,7 +475,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fcfb34e7310&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7c82123317e0&gt;]
 </pre></div>
 </div>
 <img alt="_images/fea1541f0ee604fcdb69456e1a8f9c9c1fc404f469e8f58fa7dcbbe90d438337.png" src="_images/fea1541f0ee604fcdb69456e1a8f9c9c1fc404f469e8f58fa7dcbbe90d438337.png" />
@@ -572,7 +604,7 @@ Bentuk grafik melengkung</p>
 </div>
 </div>
 </div>
-<div class="section" id="contoh-soal-polynominal-regression">
+<section id="contoh-soal-polynominal-regression">
 <h2>Contoh Soal Polynominal Regression<a class="headerlink" href="#contoh-soal-polynominal-regression" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -635,114 +667,117 @@ Bentuk grafik melengkung</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch:  0 beban:  [0.2        0.63333333 2.23333333]
-epoch:  1 beban:  [ -1.29777778  -4.65777778 -17.73777778]
-epoch:  2 beban:  [ 21.19007407  92.69496296 430.35125926]
-epoch:  3 beban:  [  -556.60551605  -2325.75539753 -10442.81627654]
-epoch:  4 beban:  [ 10291.77072214  34551.55018749 120649.96672148]
-epoch:  5 beban:  [ -53950.83419093 -128410.38744354 -319736.91113068]
-epoch:  6 beban:  [ 299046.64622088 1067037.5107404  3918410.09478856]
-epoch:  7 beban:  [ -1772856.69811728  -4192814.33726224 -10301728.62931229]
-epoch:  8 beban:  [1.42244541e+07 6.75123606e+07 3.21605589e+08]
-epoch:  9 beban:  [-2.28074788e+08 -7.65638931e+08 -2.77924246e+09]
-epoch:  10 beban:  [3.94088512e+09 1.79841494e+10 8.40988373e+10]
-epoch:  11 beban:  [-3.92961573e+10 -9.21152354e+10 -2.14044090e+11]
-epoch:  12 beban:  [2.41986134e+11 1.11876625e+12 5.34589485e+12]
-epoch:  13 beban:  [-8.21126905e+12 -3.57528209e+13 -1.62205905e+14]
-epoch:  14 beban:  [2.77254162e+14 1.19500224e+15 5.31030255e+15]
-epoch:  15 beban:  [-6.30432491e+15 -2.73648863e+16 -1.26253802e+17]
-epoch:  16 beban:  [1.80203060e+17 8.12654811e+17 3.76774499e+18]
-epoch:  17 beban:  [-2.66485819e+18 -8.96643040e+18 -3.26223366e+19]
-epoch:  18 beban:  [5.55587607e+19 2.41924387e+20 1.08246699e+21]
-epoch:  19 beban:  [-1.40176343e+21 -5.85619001e+21 -2.63295430e+22]
-epoch:  20 beban:  [2.31190008e+22 8.03369100e+22 2.89490485e+23]
-epoch:  21 beban:  [-4.93811805e+23 -2.14713703e+24 -9.61046183e+24]
-epoch:  22 beban:  [9.73860108e+24 4.30584127e+25 2.06137779e+26]
-epoch:  23 beban:  [-1.45578667e+26 -4.90956744e+26 -1.78130850e+27]
-epoch:  24 beban:  [1.73819777e+27 5.90562642e+27 2.09396381e+28]
-epoch:  25 beban:  [-2.09500938e+28 -9.39939031e+28 -4.55285280e+29]
-epoch:  26 beban:  [6.49875609e+29 2.92805437e+30 1.35547268e+31]
-epoch:  27 beban:  [-1.93677476e+31 -8.72344501e+31 -4.04408412e+32]
-epoch:  28 beban:  [6.91476827e+32 2.97764396e+33 1.32239889e+34]
-epoch:  29 beban:  [-1.16324997e+34 -4.03409407e+34 -1.45497008e+35]
-epoch:  30 beban:  [1.26385741e+35 4.43914032e+35 1.62756300e+36]
-epoch:  31 beban:  [-2.77642344e+36 -1.20649506e+37 -5.39697811e+37]
-epoch:  32 beban:  [5.46883201e+37 2.41805402e+38 1.15765007e+39]
-epoch:  33 beban:  [-1.37391388e+39 -5.96072275e+39 -2.74213138e+40]
-epoch:  34 beban:  [2.70589644e+40 9.07038191e+40 3.16234648e+41]
-epoch:  35 beban:  [-1.41363865e+41 -3.36518000e+41 -8.38270634e+41]
-epoch:  36 beban:  [1.04675466e+42 4.60763614e+42 2.13099329e+43]
-epoch:  37 beban:  [-9.92408337e+42 -2.33238644e+43 -5.43201633e+43]
-epoch:  38 beban:  [5.16081855e+43 2.45276485e+44 1.22223534e+45]
-epoch:  39 beban:  [-1.74644094e+45 -7.85613716e+45 -3.63371529e+46]
-epoch:  40 beban:  [5.58145162e+46 2.43182401e+47 1.10435202e+48]
-epoch:  41 beban:  [-1.11896759e+48 -4.94765621e+48 -2.36708104e+49]
-epoch:  42 beban:  [2.80931714e+49 1.21881432e+50 5.60709796e+50]
-epoch:  43 beban:  [-2.60757004e+50 -6.13466959e+50 -1.43031007e+51]
-epoch:  44 beban:  [1.35921996e+51 6.45825351e+51 3.21792348e+52]
-epoch:  45 beban:  [-3.18207718e+52 -1.06383966e+53 -3.69089244e+53]
-epoch:  46 beban:  [2.54546702e+53 8.73626818e+53 3.27076507e+54]
-epoch:  47 beban:  [-4.20508600e+54 -1.77618964e+55 -8.04274165e+55]
-epoch:  48 beban:  [5.66590566e+55 1.91359331e+56 6.97626248e+56]
-epoch:  49 beban:  [-8.96453207e+56 -3.79058883e+57 -1.71842634e+58]
-epoch:  50 beban:  [2.45146904e+58 1.10648721e+59 5.13295177e+59]
-epoch:  51 beban:  [-3.63061437e+59 -1.22154374e+60 -4.44409643e+60]
-epoch:  52 beban:  [3.06913908e+60 1.05322192e+61 3.92237472e+61]
-epoch:  53 beban:  [-3.92701138e+61 -1.76017841e+62 -8.50277495e+62]
-epoch:  54 beban:  [1.00945266e+63 4.37753257e+63 2.01314349e+64]
-epoch:  55 beban:  [-1.42049213e+64 -4.79087708e+64 -1.74423236e+65]
-epoch:  56 beban:  [7.81948350e+64 1.86597523e+65 4.59478823e+65]
-epoch:  57 beban:  [-1.81367604e+65 -4.67494875e+65 -1.30189328e+66]
-epoch:  58 beban:  [1.08974197e+66 3.97850477e+66 1.49569406e+67]
-epoch:  59 beban:  [-1.76625477e+67 -7.72704036e+67 -3.59090032e+68]
-epoch:  60 beban:  [3.54405192e+68 1.18772019e+69 4.13826881e+69]
-epoch:  61 beban:  [-7.05323808e+69 -3.07291109e+70 -1.37704478e+71]
-epoch:  62 beban:  [1.63526044e+71 7.09530329e+71 3.27247830e+72]
-epoch:  63 beban:  [-2.87818251e+72 -9.98460303e+72 -3.59150595e+73]
-epoch:  64 beban:  [3.11985814e+73 1.09575751e+74 4.01841818e+74]
-epoch:  65 beban:  [-4.73609456e+74 -2.07701547e+75 -9.66346504e+75]
-epoch:  66 beban:  [9.79108732e+75 4.32897730e+76 2.06885632e+77]
-epoch:  67 beban:  [-2.04164398e+77 -6.84216919e+77 -2.37978961e+78]
-epoch:  68 beban:  [2.37849949e+78 1.06841707e+79 5.18080413e+79]
-epoch:  69 beban:  [-5.25165039e+79 -2.32043518e+80 -1.10698517e+81]
-epoch:  70 beban:  [1.12159859e+81 4.95853816e+81 2.36714750e+82]
-epoch:  71 beban:  [-4.04264349e+82 -1.74188952e+83 -7.72964630e+83]
-epoch:  72 beban:  [6.79969275e+83 2.35798006e+84 8.50498590e+84]
-epoch:  73 beban:  [-5.89171313e+84 -2.01467312e+85 -7.51041157e+85]
-epoch:  74 beban:  [5.19712431e+85 1.78084062e+86 6.61491249e+86]
-epoch:  75 beban:  [-6.46092641e+86 -2.19257636e+87 -7.75997206e+87]
-epoch:  76 beban:  [9.12959026e+87 4.01351147e+88 1.87052617e+89]
-epoch:  77 beban:  [-2.42095055e+89 -1.01135985e+90 -4.54029846e+90]
-epoch:  78 beban:  [4.47447758e+90 1.50219014e+91 5.24553928e+91]
-epoch:  79 beban:  [-3.61968555e+91 -1.24178930e+92 -4.64574109e+92]
-epoch:  80 beban:  [5.97276345e+92 2.52290858e+93 1.14243131e+94]
-epoch:  81 beban:  [-1.95121366e+94 -8.41759039e+94 -3.74075729e+95]
-epoch:  82 beban:  [2.63933132e+95 8.89551002e+95 3.24849994e+96]
-epoch:  83 beban:  [-2.81504039e+96 -9.91384184e+96 -3.63079645e+97]
-epoch:  84 beban:  [3.15770573e+97 1.10773256e+98 4.05603918e+98]
-epoch:  85 beban:  [-2.81350484e+98 -9.61105538e+98 -3.57704394e+99]
-epoch:  86 beban:  [4.59807540e+099 1.94276460e+100 8.79927536e+100]
-epoch:  87 beban:  [-1.50287380e+101 -6.48338820e+101 -2.88118406e+102]
-epoch:  88 beban:  [2.03284925e+102 6.85144661e+102 2.50204165e+103]
-epoch:  89 beban:  [-1.12169193e+103 -2.67769648e+103 -6.58833429e+103]
-epoch:  90 beban:  [6.16250935e+103 2.19887542e+104 8.08550998e+104]
-epoch:  91 beban:  [-1.38007743e+105 -5.99280892e+105 -2.68048831e+106]
-epoch:  92 beban:  [1.24654376e+106 2.92457105e+106 6.85931419e+106]
-epoch:  93 beban:  [-7.75801516e+106 -3.58438940e+107 -1.71161470e+108]
-epoch:  94 beban:  [2.44591810e+108 1.10094621e+109 5.09885831e+109]
-epoch:  95 beban:  [-6.05881926e+109 -2.62610459e+110 -1.20964419e+111]
-epoch:  96 beban:  [1.72650931e+111 7.78632009e+111 3.61019179e+112]
-epoch:  97 beban:  [-3.66244116e+112 -1.61715636e+113 -7.72984531e+113]
-epoch:  98 beban:  [7.62771101e+113 2.55644576e+114 8.89153198e+114]
-epoch:  99 beban:  [-8.88675686e+114 -3.99189152e+115 -1.93568815e+116]
-Predict:  [-2.42374487e+116 -8.62999846e+116 -3.26566345e+117 -1.87076283e+117
- -5.04770170e+117]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epoch:  0 beban:  [0.33333333 1.23333333 5.16666667]
+epoch:  1 beban:  [ -2.15777778  -5.17555556 -12.31333333]
+epoch:  2 beban:  [ 18.79237037  85.66985185 399.24481481]
+epoch:  3 beban:  [  -570.28622469  -2567.81589136 -11901.63778765]
+epoch:  4 beban:  [ 10486.44605144  36308.69008988 130561.26474815]
+epoch:  5 beban:  [ -185450.56589774  -844905.70145804 -3952570.18055531]
+epoch:  6 beban:  [6.75867407e+06 2.90959574e+07 1.29185592e+08]
+epoch:  7 beban:  [-1.53362504e+08 -6.65723446e+08 -3.07156269e+09]
+epoch:  8 beban:  [3.97452764e+09 1.66103148e+10 7.45954969e+10]
+epoch:  9 beban:  [-6.55017731e+10 -2.27604689e+11 -8.20229991e+11]
+epoch:  10 beban:  [3.69343338e+11 8.75987176e+11 2.16288110e+12]
+epoch:  11 beban:  [-1.77568453e+12 -6.61452864e+12 -2.52120375e+13]
+epoch:  12 beban:  [3.59035794e+13 1.62913944e+14 7.60399839e+14]
+epoch:  13 beban:  [-1.08655120e+15 -4.89299909e+15 -2.26774088e+16]
+epoch:  14 beban:  [2.30043124e+16 1.01582173e+17 4.85561086e+17]
+epoch:  15 beban:  [-4.27204306e+17 -1.48164419e+18 -5.31654955e+18]
+epoch:  16 beban:  [3.68281779e+18 1.25921250e+19 4.69684285e+19]
+epoch:  17 beban:  [-2.11224890e+19 -5.03828778e+19 -1.23290970e+20]
+epoch:  18 beban:  [7.90494435e+19 2.89821744e+20 1.13604093e+21]
+epoch:  19 beban:  [-1.14218223e+21 -5.09539602e+21 -2.45488216e+22]
+epoch:  20 beban:  [3.50388516e+22 1.57894756e+23 7.31056430e+23]
+epoch:  21 beban:  [-3.41203652e+23 -8.00064949e+23 -1.86288641e+24]
+epoch:  22 beban:  [2.56764601e+24 1.22320411e+25 5.84507372e+25]
+epoch:  23 beban:  [-4.14587776e+25 -1.39159632e+26 -5.05012957e+26]
+epoch:  24 beban:  [4.92614182e+26 1.67434174e+27 5.93660978e+27]
+epoch:  25 beban:  [-1.01207336e+28 -4.40568639e+28 -1.97306961e+29]
+epoch:  26 beban:  [2.81806707e+29 1.27060708e+30 5.89671353e+30]
+epoch:  27 beban:  [-1.00824727e+31 -4.34161315e+31 -1.92809282e+32]
+epoch:  28 beban:  [1.36022703e+32 4.58496991e+32 1.67445884e+33]
+epoch:  29 beban:  [-1.96866398e+33 -8.65696305e+33 -4.02839823e+34]
+epoch:  30 beban:  [1.87587868e+34 4.41174646e+34 1.02617425e+35]
+epoch:  31 beban:  [-1.41487309e+35 -6.73810275e+35 -3.22000779e+36]
+epoch:  32 beban:  [5.50886518e+36 2.36898579e+37 1.05122155e+38]
+epoch:  33 beban:  [-4.88369985e+37 -1.14613768e+38 -2.69275517e+38]
+epoch:  34 beban:  [2.50730499e+38 8.99439848e+38 3.32463427e+39]
+epoch:  35 beban:  [-2.31145584e+39 -7.87861522e+39 -2.92936859e+40]
+epoch:  36 beban:  [1.31657995e+40 3.14127861e+40 7.69320390e+40]
+epoch:  37 beban:  [-1.28935960e+41 -5.80118858e+41 -2.63813707e+42]
+epoch:  38 beban:  [2.67679307e+42 1.18180618e+43 5.65381298e+43]
+epoch:  39 beban:  [-8.67313703e+43 -3.78157574e+44 -1.71557241e+45]
+epoch:  40 beban:  [1.73835620e+45 7.68601848e+45 3.67735124e+46]
+epoch:  41 beban:  [-6.27990742e+46 -2.70588644e+47 -1.20066705e+48]
+epoch:  42 beban:  [2.05282804e+48 8.85031479e+48 3.93536263e+49]
+epoch:  43 beban:  [-2.77650666e+49 -9.35843894e+49 -3.41737118e+50]
+epoch:  44 beban:  [2.96139447e+50 1.04291993e+51 3.81955627e+51]
+epoch:  45 beban:  [-3.73858820e+51 -1.26586135e+52 -4.48517931e+52]
+epoch:  46 beban:  [6.36473187e+52 2.90370997e+53 1.35919617e+54]
+epoch:  47 beban:  [-1.94238238e+54 -8.74560655e+54 -4.05292937e+55]
+epoch:  48 beban:  [2.86630029e+55 9.64508218e+55 3.50927922e+56]
+epoch:  49 beban:  [-4.12554453e+56 -1.81440644e+57 -8.44461281e+57]
+epoch:  50 beban:  [1.09300127e+58 4.56592948e+58 2.04988472e+59]
+epoch:  51 beban:  [-2.92366614e+59 -1.32016738e+60 -6.12615016e+60]
+epoch:  52 beban:  [7.28009544e+60 3.15511037e+61 1.45320737e+62]
+epoch:  53 beban:  [-1.47182278e+62 -6.51040649e+62 -3.11275138e+63]
+epoch:  54 beban:  [4.44240144e+63 2.00235691e+64 9.27314520e+64]
+epoch:  55 beban:  [-1.58563686e+65 -6.82792461e+65 -3.03243081e+66]
+epoch:  56 beban:  [3.92596919e+66 1.64078969e+67 7.37904778e+67]
+epoch:  57 beban:  [-5.19484714e+67 -1.75550520e+68 -6.40376931e+68]
+epoch:  58 beban:  [9.08290918e+68 4.14325693e+69 1.93712526e+70]
+epoch:  59 beban:  [-1.96586593e+70 -8.67671394e+70 -4.14588393e+71]
+epoch:  60 beban:  [6.36004413e+71 2.77305552e+72 1.25808634e+73]
+epoch:  61 beban:  [-1.10704925e+73 -3.83811749e+73 -1.38218772e+74]
+epoch:  62 beban:  [2.35753646e+74 1.02519080e+75 4.58879179e+75]
+epoch:  63 beban:  [-7.04691270e+75 -3.07321045e+76 -1.39701800e+77]
+epoch:  64 beban:  [1.80857426e+77 7.55620463e+77 3.39528549e+78]
+epoch:  65 beban:  [-2.98130786e+78 -1.03596881e+79 -3.73322435e+79]
+epoch:  66 beban:  [1.68104742e+79 3.98697868e+79 9.84426547e+79]
+epoch:  67 beban:  [-6.30833818e+79 -2.31505301e+80 -9.06169317e+80]
+epoch:  68 beban:  [8.88640219e+80 3.00156692e+81 1.05813711e+82]
+epoch:  69 beban:  [-1.50146656e+82 -6.85121903e+82 -3.20764959e+83]
+epoch:  70 beban:  [3.17113251e+83 1.06074502e+84 3.69417379e+84]
+epoch:  71 beban:  [-3.60385625e+84 -1.22505493e+85 -4.35809392e+85]
+epoch:  72 beban:  [5.60425688e+85 2.36899774e+86 1.07516815e+87]
+epoch:  73 beban:  [-1.27499446e+87 -5.53965361e+87 -2.55365330e+88]
+epoch:  74 beban:  [2.24614079e+88 7.79134126e+88 2.80268338e+89]
+epoch:  75 beban:  [-1.94152366e+89 -6.63853261e+89 -2.47548583e+90]
+epoch:  76 beban:  [2.91248565e+90 1.27938657e+91 5.94756263e+91]
+epoch:  77 beban:  [-6.02660867e+91 -2.66434460e+92 -1.27336120e+93]
+epoch:  78 beban:  [8.99281399e+92 3.03264399e+93 1.10047358e+94]
+epoch:  79 beban:  [-9.53678949e+93 -3.35833123e+94 -1.23061440e+95]
+epoch:  80 beban:  [1.58489150e+95 6.68462158e+95 3.02980814e+96]
+epoch:  81 beban:  [-3.06542448e+96 -1.35754068e+97 -6.49523728e+97]
+epoch:  82 beban:  [1.10925235e+98 4.77933525e+98 2.12070569e+99]
+epoch:  83 beban:  [-2.74570566e+099 -1.14748543e+100 -5.16070952e+100]
+epoch:  84 beban:  [5.08581799e+100 1.70744631e+101 5.96157594e+101]
+epoch:  85 beban:  [-4.11378367e+101 -1.41129366e+102 -5.27995584e+102]
+epoch:  86 beban:  [8.06716757e+102 3.55281956e+103 1.62475286e+104]
+epoch:  87 beban:  [-1.43025649e+104 -4.95671697e+104 -1.78402428e+105]
+epoch:  88 beban:  [1.54961041e+105 5.44305842e+105 1.99599981e+106]
+epoch:  89 beban:  
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[-3.40492375e+106 -1.47960536e+107 -6.61863312e+107]
+epoch:  90 beban:  [7.85917711e+107 3.41037775e+108 1.57303716e+109]
+epoch:  91 beban:  [-1.55218132e+109 -5.20323223e+109 -1.81377634e+110]
+epoch:  92 beban:  [1.81283288e+110 8.14292584e+110 3.94803659e+111]
+epoch:  93 beban:  [-2.79047226e+111 -9.40490070e+111 -3.40874400e+112]
+epoch:  94 beban:  [4.83459579e+112 2.20579238e+113 1.03155433e+114]
+epoch:  95 beban:  [-1.33665053e+114 -5.57655953e+114 -2.50321806e+115]
+epoch:  96 beban:  [2.53162777e+115 1.12166847e+116 5.36901768e+116]
+epoch:  97 beban:  [-5.44028278e+116 -2.40491224e+117 -1.14791243e+118]
+epoch:  98 beban:  [1.16308087e+118 5.14184959e+118 2.45460105e+119]
+epoch:  99 beban:  [-2.91327943e+119 -1.26390553e+120 -5.81501997e+120]
+Predict:  [-7.37025344e+120 -2.60792189e+121 -9.83872695e+121 -5.64182242e+121
+ -1.51986355e+122]
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
